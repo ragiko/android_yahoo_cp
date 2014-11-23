@@ -37,6 +37,10 @@
             android:name=".NewMealActivity"
             android:label="@string/title_activity_new_meal" >
         </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="search" >
+        </activity>
     </application>
 
 </manifest>

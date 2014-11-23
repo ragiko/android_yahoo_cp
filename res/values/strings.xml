@@ -20,5 +20,17 @@
         <item>1</item>
         <item></item>
     </string-array>
+    
+    <string-array name="departments">
+        <item>工学部</item>
+        <item>教育学部</item>
+        <item></item>
+    </string-array>
+    
+    <string-array name="years">
+        <item>2014</item>
+        <item>2013</item>
+        <item></item>
+    </string-array>
 
 </resources>

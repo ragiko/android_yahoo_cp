@@ -44,6 +44,11 @@ public class MealListActivity extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 
+		case R.id.action_search: {
+			searchMeal();
+			break;
+		}
+		
 		case R.id.action_refresh: {
 			updateMealList();
 			break;
@@ -58,6 +63,7 @@ public class MealListActivity extends ListActivity {
 			newMeal();
 			break;
 		}
+		
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -74,6 +80,11 @@ public class MealListActivity extends ListActivity {
 
 	private void newMeal() {
 		Intent i = new Intent(this, NewMealActivity.class);
+		startActivityForResult(i, 0);
+	}
+	
+	private void searchMeal() {
+		Intent i = new Intent(this, SearchActivity.class);
 		startActivityForResult(i, 0);
 	}
 
