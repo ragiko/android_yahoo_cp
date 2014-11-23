@@ -9,7 +9,6 @@ import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
-import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
 /*
@@ -21,17 +20,18 @@ import com.parse.ParseQueryAdapter;
 
 public class TextAdapter extends ParseQueryAdapter<Text> {
 
-	public TextAdapter(Context context) {
-		super(context, new ParseQueryAdapter.QueryFactory<Text>() {
-			public ParseQuery<Text> create() {
-				// Here we can configure a ParseQuery to display
-				// only top-rated meals.
-				ParseQuery query = new ParseQuery("Text");
-				// query.whereContainedIn("rating", Arrays.asList("5", "4"));
-				// query.orderByDescending("rating");
-				return query;
-			}
-		});
+	public TextAdapter(Context context, QueryFactory<Text> query) {
+		super(context, query);
+//		super(context, new ParseQueryAdapter.QueryFactory<Text>() {
+//			public ParseQuery<Text> create() {
+//				// Here we can configure a ParseQuery to display
+//				// only top-rated meals.
+//				ParseQuery query = new ParseQuery("Text");
+//				// query.whereContainedIn("rating", Arrays.asList("5", "4"));
+//				// query.orderByDescending("rating");
+//				return query;
+//			}
+//		});
 	}
 
 	@Override

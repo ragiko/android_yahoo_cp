@@ -38,7 +38,14 @@ public class SearchActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(SearchActivity.this, MealListActivity.class);
-				startActivityForResult(i, 0);
+				
+				Bundle bundle = new Bundle();
+				String departmentStr = departments.getSelectedItem().toString();
+				bundle.putString("department", departmentStr);
+				
+				i.putExtras(bundle);
+				setResult(RESULT_OK, i);
+				finish();
 			}
 		});
 	}

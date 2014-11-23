@@ -1,12 +1,15 @@
 package com.parse.mealspotting;
 
-import android.app.Activity;
+import java.util.Arrays;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
 public class MealListActivity extends ListActivity {
@@ -14,6 +17,9 @@ public class MealListActivity extends ListActivity {
 	private ParseQueryAdapter<Meal> mainAdapter;
 	private FavoriteMealAdapter favoritesAdapter;
 	private TextAdapter textAdapter;
+	private int SEARCH_REQUEST_CODE = 1;
+	private String departmentStr;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +33,17 @@ public class MealListActivity extends ListActivity {
 		// Subclass of ParseQueryAdapter
 		favoritesAdapter = new FavoriteMealAdapter(this);
 		
-		textAdapter = new TextAdapter(this);
+		textAdapter = new TextAdapter(this,
+				new ParseQueryAdapter.QueryFactory<Text>() {
+					public ParseQuery<Text> create() {
+						// Here we can configure a ParseQuery to display
+						// only top-rated meals.
+						ParseQuery query = new ParseQuery("Text");
+						query.whereContainedIn("department", Arrays.asList("工学部"));
+						// query.orderByDescending("rating");
+						return query;
+					}
+				});
 
 		// Default view is all meals
 		setListAdapter(textAdapter);
@@ -80,6 +96,7 @@ public class MealListActivity extends ListActivity {
 		mainAdapter.loadObjects();
 		setListAdapter(mainAdapter);
 	}
+	
 
 	private void showFavorites() {
 		favoritesAdapter.loadObjects();
@@ -93,7 +110,7 @@ public class MealListActivity extends ListActivity {
 	
 	private void searchMeal() {
 		Intent i = new Intent(this, SearchActivity.class);
-		startActivityForResult(i, 0);
+		startActivityForResult(i, SEARCH_REQUEST_CODE);
 	}
 	
 	private void textMeal() {
@@ -103,11 +120,25 @@ public class MealListActivity extends ListActivity {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (resultCode == Activity.RESULT_OK) {
-			// If a new post has been added, update
-			// the list of posts
-			updateMealList();
+		if (requestCode == SEARCH_REQUEST_CODE && resultCode == RESULT_OK) {
+			
+			Bundle bundle = data.getExtras();
+			departmentStr = bundle.getString("department");
+			
+			textAdapter = new TextAdapter(this,
+					new ParseQueryAdapter.QueryFactory<Text>() {
+						public ParseQuery<Text> create() {
+							// Here we can configure a ParseQuery to display
+							// only top-rated meals.
+							ParseQuery query = new ParseQuery("Text");
+							query.whereContainedIn("department", Arrays.asList(departmentStr));
+							// query.orderByDescending("rating");
+							return query;
+						}
+					});
+
+			// Default view is all meals
+			setListAdapter(textAdapter);
 		}
 	}
-
 }
