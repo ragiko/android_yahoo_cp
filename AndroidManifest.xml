@@ -41,6 +41,10 @@
             android:name=".SearchActivity"
             android:label="search" >
         </activity>
+        <activity
+            android:name=".TextActivity"
+            android:label="text" >
+        </activity>
     </application>
 
 </manifest>

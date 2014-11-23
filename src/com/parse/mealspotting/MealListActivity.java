@@ -43,6 +43,11 @@ public class MealListActivity extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		
+		case R.id.action_text: {
+			textMeal();
+			break;
+		}
 
 		case R.id.action_search: {
 			searchMeal();
@@ -85,6 +90,11 @@ public class MealListActivity extends ListActivity {
 	
 	private void searchMeal() {
 		Intent i = new Intent(this, SearchActivity.class);
+		startActivityForResult(i, 0);
+	}
+	
+	private void textMeal() {
+		Intent i = new Intent(this, TextActivity.class);
 		startActivityForResult(i, 0);
 	}
 
