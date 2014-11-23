@@ -18,6 +18,7 @@ public class MealSpottingApplication extends Application {
 		 * create and modify Meal objects
 		 */
 		ParseObject.registerSubclass(Meal.class);
+		ParseObject.registerSubclass(Text.class);
 
 		/*
 		 * Fill in this section with your Parse credentials

@@ -52,7 +52,7 @@
              android:id="@+id/search_button"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:text="検索" />
+             android:text="投稿者にSMSで連絡" />
       
         <TextView
             android:layout_width="match_parent"

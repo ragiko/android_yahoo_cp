@@ -13,6 +13,7 @@ public class MealListActivity extends ListActivity {
 
 	private ParseQueryAdapter<Meal> mainAdapter;
 	private FavoriteMealAdapter favoritesAdapter;
+	private TextAdapter textAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,9 +26,11 @@ public class MealListActivity extends ListActivity {
 
 		// Subclass of ParseQueryAdapter
 		favoritesAdapter = new FavoriteMealAdapter(this);
+		
+		textAdapter = new TextAdapter(this);
 
 		// Default view is all meals
-		setListAdapter(mainAdapter);
+		setListAdapter(textAdapter);
 	}
 
 	@Override
