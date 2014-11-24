@@ -14,13 +14,6 @@ import com.parse.ParseFile;
 import com.parse.ParseImageView;
 import com.parse.ParseQueryAdapter;
 
-/*
- * The FavoriteMealAdapter is an extension of ParseQueryAdapter
- * that has a custom layout for favorite meals, including a 
- * bigger preview image, the meal's rating, and a "favorite"
- * star. 
- */
-
 public class TextAdapter extends ParseQueryAdapter<Text> {
 	
 	private Context mContext;
@@ -32,7 +25,6 @@ public class TextAdapter extends ParseQueryAdapter<Text> {
 		// コンテキストを保存
 		mContext = context;
 	}
-	
 	
 	@Override
 	public View getItemView(Text text, View v, ViewGroup parent) {
@@ -60,9 +52,9 @@ public class TextAdapter extends ParseQueryAdapter<Text> {
 
 		TextView titleTextView = (TextView) v.findViewById(R.id.text_title);
 		titleTextView.setText(text.getTitle());
-		TextView bodyTextView = (TextView) v
-				.findViewById(R.id.text_body);
-		bodyTextView.setText(text.getBody());
+//		TextView bodyTextView = (TextView) v
+//				.findViewById(R.id.text_body);
+//		bodyTextView.setText(text.getBody());
 		
 		// Listen for ListView Item Click
         v.setOnClickListener(new OnClickListener() {

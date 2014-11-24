@@ -57,8 +57,6 @@ public class TextActivity extends Activity {
 		Intent i = getIntent();
 		textId = i.getStringExtra("text_id");
 		
-		
-		
 		new RemoteDataTask().execute();
 	}
 }
