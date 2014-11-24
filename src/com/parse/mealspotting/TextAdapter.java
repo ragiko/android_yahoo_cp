@@ -32,7 +32,8 @@ public class TextAdapter extends ParseQueryAdapter<Text> {
 		// コンテキストを保存
 		mContext = context;
 	}
-
+	
+	
 	@Override
 	public View getItemView(Text text, View v, ViewGroup parent) {
 		
@@ -65,7 +66,6 @@ public class TextAdapter extends ParseQueryAdapter<Text> {
 		
 		// Listen for ListView Item Click
         v.setOnClickListener(new OnClickListener() {
- 
             @Override
             public void onClick(View arg0) {
             	

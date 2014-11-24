@@ -12,7 +12,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 public class TextActivity extends Activity {
-	// TODO: idからbackgroundでゲットしてくる
 	
 	private ParseObject text;
 	private String textId;
