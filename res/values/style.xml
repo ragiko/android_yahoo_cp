@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+     <style name="Header">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">80dp</item>
+		<item name="android:orientation">vertical</item>
+		<item name="android:background">#004EA2</item>
+		<item name="android:gravity">center_vertical|center_horizontal</item>
+		<item name="android:paddingRight">10dp</item>
+		<item name="android:paddingLeft">10dp</item>
+	</style>
+	<style name="Button">
+	    <item name="android:background">#004EA2</item>
+	    <item name="android:textColor">#ffffff</item>
+	    <item name="android:textSize">12sp</item>
+	</style>
+	<style name="Title">
+	    <item name="android:textColor">#ffffff</item>
+	    <item name="android:layout_width">fill_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:gravity">left</item>
+	    <item name="android:textSize">20sp</item>
+	</style>
+	<style name="Announce">
+	    <item name="android:background">#66000000</item>
+	    <item name="android:textColor">#ffffff</item>
+		<item name="android:layout_width">fill_parent</item>
+	    <item name="android:layout_height">80dp</item>
+	    <item name="android:orientation">vertical</item>
+	    <item name="android:gravity">center_vertical|center_horizontal</item>
+	</style>
+	<style name="Description">
+	    <item name="android:background">#ffffff</item>
+	    <item name="android:textColor">#004EA2</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	    <item name="android:orientation">vertical</item>
+	    <item name="android:gravity">center_vertical</item>
+	    <item name="android:padding">15dip</item>
+	    <item name="android:textSize">15sp</item>
+	</style>
+	<style name="MyDialog">
+	    <item name="android:background">#ffffff</item>
+	</style>
+	<style name="Section">
+	    <item name="android:textColor">#000000</item>
+	    <item name="android:layout_width">wrap_content</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:gravity">left</item>
+	    <item name="android:textSize">20sp</item>
+	</style>
+	<style name="PostItemLayout">
+	    <item name="android:layout_width">match_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="android:layout_marginBottom">15dp</item>
+	</style>
+	<style name="PostBottomItemLayout">
+	    <item name="android:layout_width">match_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:orientation">horizontal</item>
+		<item name="android:layout_marginBottom">30dp</item>
+
+	</style>
+</resources>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragmentContainer2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+                style="@style/Section"
+                android:text="大学・学部情報" />
+
+        <LinearLayout style="@style/PostItemLayout" >"
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="大学" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="大学名" />
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/Button"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="変更する" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/PostBottomItemLayout" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="学部" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="学部名" />
+
+            <Button
+                android:id="@+id/button2"
+                style="@style/Button"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="変更する" />
+        </LinearLayout>
+
+        <TextView
+                style="@style/Section"
+                android:text="書籍情報" />
+
+        <LinearLayout style="@style/PostItemLayout" >
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:text="書名から検索する" >
+
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/button3"
+                style="@style/Button"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="検索" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/Button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="バーコードから取得する" />
+
+        <TextView
+                style="@style/Section"
+                android:text="追加の書籍情報" />
+
+        <LinearLayout style="@style/PostItemLayout" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="参考写真" />
+
+            <Button
+                android:id="@+id/button5"
+                style="@style/Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="カメラで撮る" />
+
+            <Button
+                android:id="@+id/button6"
+                style="@style/Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ギャラリー" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/PostItemLayout" >
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="内容" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:lines="3" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/PostItemLayout" >
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="価格" />
+
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/PostBottomItemLayout" >
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="年度" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button7"
+            style="@style/Button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="投稿する" />
+
+    </LinearLayout>
+
+</FrameLayout>
