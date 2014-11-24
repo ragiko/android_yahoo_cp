@@ -1,5 +1,11 @@
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Light" />
+    <style name="AppTheme" parent="android:Theme.Light">
+		<item name="android:actionBarStyle">@style/actionBar</item>
+	</style>
+	<style name="actionBar" parent="android:Theme.Light">
+		<!-- タイトルバーの背景色 -->
+		<item name="android:background">#f0e68c</item>
+	</style>
 
 </resources>
