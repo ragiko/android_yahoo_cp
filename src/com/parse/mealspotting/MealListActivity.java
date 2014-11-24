@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -16,27 +17,20 @@ import android.widget.ListView;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
-public class MealListActivity extends ListActivity implements OnItemClickListener  {
+public class MealListActivity extends ListActivity {
 
-	private ParseQueryAdapter<Meal> mainAdapter;
-	private FavoriteMealAdapter favoritesAdapter;
 	private TextAdapter textAdapter;
 	private int SEARCH_REQUEST_CODE = 1;
 	private String departmentStr;
 	
+	// Adapter for the Todos Parse Query
+	private ParseQueryAdapter<Text> mTexAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getListView().setClickable(false);
 
-		mainAdapter = new ParseQueryAdapter<Meal>(this, Meal.class);
-		mainAdapter.setTextKey("title");
-		mainAdapter.setImageKey("photo");
-
-		// Subclass of ParseQueryAdapter
-		favoritesAdapter = new FavoriteMealAdapter(this);
-		
 		textAdapter = new TextAdapter(this,
 				new ParseQueryAdapter.QueryFactory<Text>() {
 					public ParseQuery<Text> create() {
@@ -49,12 +43,8 @@ public class MealListActivity extends ListActivity implements OnItemClickListene
 					}
 				});
 
-		// Default view is all meals
+		mTexAdapter = textAdapter; // アダプターをクリックリスナーで使用
 		setListAdapter(textAdapter);
-		
-//		ListView lv = getListView();
-//		lv.setTextFilterEnabled(true);
-//		lv.setOnItemClickListener(this);
 	}
 
 	@Override
@@ -71,26 +61,11 @@ public class MealListActivity extends ListActivity implements OnItemClickListene
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		
-		case R.id.action_text: {
-			textMeal();
-			break;
-		}
-
 		case R.id.action_search: {
 			searchMeal();
 			break;
 		}
 		
-		case R.id.action_refresh: {
-			updateMealList();
-			break;
-		}
-
-		case R.id.action_favorites: {
-			showFavorites();
-			break;
-		}
-
 		case R.id.action_new: {
 			newMeal();
 			break;
@@ -98,17 +73,6 @@ public class MealListActivity extends ListActivity implements OnItemClickListene
 		
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	private void updateMealList() {
-		mainAdapter.loadObjects();
-		setListAdapter(mainAdapter);
-	}
-	
-
-	private void showFavorites() {
-		favoritesAdapter.loadObjects();
-		setListAdapter(favoritesAdapter);
 	}
 
 	private void newMeal() {
@@ -121,11 +85,6 @@ public class MealListActivity extends ListActivity implements OnItemClickListene
 		startActivityForResult(i, SEARCH_REQUEST_CODE);
 	}
 	
-	private void textMeal() {
-		Intent i = new Intent(this, TextActivity.class);
-		startActivityForResult(i, 0);
-	}
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == SEARCH_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -149,11 +108,15 @@ public class MealListActivity extends ListActivity implements OnItemClickListene
 			setListAdapter(textAdapter);
 		}
 	}
-	
+
 	@Override
-	public void onItemClick(AdapterView<?> parent, View v, int position, final long id) {
+	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
-		Log.d("debag", String.valueOf(position));
+		super.onListItemClick(l, v, position, id);
+		Text text = mTexAdapter.getItem(position);
 		
+		Intent intent = new Intent(this, TextActivity.class);
+		intent.putExtra("text_id", text.getId());
+		this.startActivity(intent);
 	}
 }

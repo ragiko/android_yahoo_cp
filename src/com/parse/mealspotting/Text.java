@@ -5,11 +5,6 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-/*
- * An extension of ParseObject that makes
- * it more convenient to access information
- * about a given Meal 
- */
 
 @ParseClassName("Text")
 public class Text extends ParseObject {
