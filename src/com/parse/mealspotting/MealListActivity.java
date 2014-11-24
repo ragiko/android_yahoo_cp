@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -21,6 +22,9 @@ public class MealListActivity extends ListActivity {
 	private TextAdapter textAdapter;
 	private int SEARCH_REQUEST_CODE = 1;
 	private String departmentStr;
+	
+	// Adapter for the Todos Parse Query
+	private ParseQueryAdapter<Text> mTexAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,7 @@ public class MealListActivity extends ListActivity {
 					}
 				});
 
-		// Default view is all meals
+		mTexAdapter = textAdapter; // アダプターをクリックリスナーで使用
 		setListAdapter(textAdapter);
 	}
 
@@ -103,5 +107,16 @@ public class MealListActivity extends ListActivity {
 			// Default view is all meals
 			setListAdapter(textAdapter);
 		}
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		Text text = mTexAdapter.getItem(position);
+		
+		Intent intent = new Intent(this, TextActivity.class);
+		intent.putExtra("text_id", text.getId());
+		this.startActivity(intent);
 	}
 }
