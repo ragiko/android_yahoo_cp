@@ -8,11 +8,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
-public class MealListActivity extends ListActivity {
+public class MealListActivity extends ListActivity implements OnItemClickListener  {
 
 	private ParseQueryAdapter<Meal> mainAdapter;
 	private FavoriteMealAdapter favoritesAdapter;
@@ -47,6 +51,10 @@ public class MealListActivity extends ListActivity {
 
 		// Default view is all meals
 		setListAdapter(textAdapter);
+		
+//		ListView lv = getListView();
+//		lv.setTextFilterEnabled(true);
+//		lv.setOnItemClickListener(this);
 	}
 
 	@Override
@@ -140,5 +148,12 @@ public class MealListActivity extends ListActivity {
 			// Default view is all meals
 			setListAdapter(textAdapter);
 		}
+	}
+	
+	@Override
+	public void onItemClick(AdapterView<?> parent, View v, int position, final long id) {
+		// TODO Auto-generated method stub
+		Log.d("debag", String.valueOf(position));
+		
 	}
 }

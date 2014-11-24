@@ -17,6 +17,14 @@ public class Text extends ParseObject {
 	public Text() {
 		// A default constructor is required.
 	}
+	
+	public String getId() {
+		return getObjectId();
+	}
+
+	public void setId(String id) {
+		put("id", id);
+	}
 
 	public String getTitle() {
 		return getString("title");
