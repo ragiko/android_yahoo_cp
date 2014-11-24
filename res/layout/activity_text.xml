@@ -9,13 +9,14 @@
         android:orientation="vertical" >
         
         <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="20dp"
-            android:text="羅生門 蜘蛛の糸 杜子春 外十八篇 (文春文庫―現代日本文学館)"
+            android:text=""
             android:textSize="27sp" />
         
         <TextView
