@@ -11,20 +11,20 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-public class TextActivity extends Activity {
+public class BookActivity extends Activity {
 	
-	private ParseObject text;
-	private String textId;
+	private ParseObject book;
+	private String bookId;
 	
 	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
 		// Override this method to do custom remote calls
 		protected Void doInBackground(Void... params) {
 			// Gets the current list of todos in sorted order
 			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Text");
-			query.whereEqualTo("objectId", textId);
+			query.whereEqualTo("objectId", bookId);
 
 			try {
-				text = query.getFirst();
+				book = query.getFirst();
 			} catch (ParseException e) {
 
 			}
@@ -43,19 +43,19 @@ public class TextActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			Log.d("title", (String) text.get("title"));
+			Log.d("title", (String) book.get("title"));
 			TextView titleTextView = (TextView) findViewById(R.id.title);
-			titleTextView.setText((String) text.get("title"));
+			titleTextView.setText((String) book.get("title"));
 		}
 	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_text);	
+		setContentView(R.layout.activity_book);	
 		
 		Intent i = getIntent();
-		textId = i.getStringExtra("text_id");
+		bookId = i.getStringExtra("text_id");
 		
 		new RemoteDataTask().execute();
 	}

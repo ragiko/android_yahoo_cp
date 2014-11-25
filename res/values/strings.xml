@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">MealSpotting</string>
+    <string name="app_name">GoodBuy</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_meal_list">MealSpotting</string>
     <string name="title_activity_new_meal">NewMealActivity</string>
@@ -11,6 +11,14 @@
     <string name="meal_label">Add a Meal</string>
     <string name="save_button_text">Save</string>
     <string name="cancel_button_text">Cancel</string>
+    <string name="amazon_api_endpoint">http://ecs.amazonaws.jp/onca/xml</string>
+    <string name="amazon_api_service">AWSECommerceService</string>
+    <string name="amazon_api_key">AKIAJ67AZYWA67JCWXHQ</string>
+    <string name="amazon_api_secret_key">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</string>
+    <string name="amazon_api_associate">ragiko-22</string>
+    <string name="amazon_api_version">2009\\-07\\-01</string>
+    <string name="amazon_api_operation">ItemSearch</string>
+    <string name="amazon_api_searchindex">Books</string>
 
     <string-array name="ratings_array">
         <item>5</item>
@@ -20,13 +28,13 @@
         <item>1</item>
         <item></item>
     </string-array>
-    
+
     <string-array name="departments">
         <item>工学部</item>
         <item>教育学部</item>
         <item></item>
     </string-array>
-    
+
     <string-array name="years">
         <item>2014</item>
         <item>2013</item>
