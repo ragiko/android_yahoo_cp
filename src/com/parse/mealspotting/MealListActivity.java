@@ -5,6 +5,7 @@ import java.util.Arrays;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,6 +79,11 @@ public class MealListActivity extends ListActivity {
 			newMeal();
 			break;
 		}
+		
+		case R.id.action_post: {
+			postBook();
+			break;
+		}
 
 		}
 		return super.onOptionsItemSelected(item);
@@ -91,6 +97,11 @@ public class MealListActivity extends ListActivity {
 	private void searchMeal() {
 		Intent i = new Intent(this, SearchActivity.class);
 		startActivityForResult(i, SEARCH_REQUEST_CODE);
+	}
+	
+	private void postBook() {
+		Intent i = new Intent(this, PostActivity.class);
+		startActivityForResult(i, 0);
 	}
 
 	@Override

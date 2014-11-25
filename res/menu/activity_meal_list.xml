@@ -17,4 +17,10 @@
         android:showAsAction="ifRoom"
         android:title="@string/action_new">
     </item>
+    <item
+        android:id="@+id/action_post"
+        android:icon="@drawable/ic_action_favorite"
+        android:showAsAction="ifRoom"
+        android:title="">
+    </item>
 </menu>
