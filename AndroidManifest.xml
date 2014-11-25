@@ -24,15 +24,7 @@
         <activity
             android:name=".MealListActivity"
             android:label="@string/title_activity_meal_list" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="android.app.Activity" />
         </activity>
         <activity
             android:name=".NewMealActivity"
@@ -45,6 +37,19 @@
         <activity
             android:name=".TextActivity"
             android:label="text" >
+        </activity>
+        <activity
+            android:name=".PostActivity"
+            android:label="post" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.app.Activity" />
         </activity>
     </application>
 
