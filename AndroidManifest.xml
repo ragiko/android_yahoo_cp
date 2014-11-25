@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name=".PostActivity"
-            android:label="post" >
+            android:label="出品する教科書の登録" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

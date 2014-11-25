@@ -7,11 +7,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -46,8 +46,7 @@ public class PostActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		//meal = new Meal();
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_post);
@@ -74,9 +73,61 @@ public class PostActivity extends Activity {
       @Override
       public void onClick(View v) {
         // 書籍を検索
+        String keyword = searchEditText.getText().toString();
 
+        // APIのURLを生成
+        String endpoint = (String)getText(R.string.amazon_api_endpoint);
+        String service = (String)getText(R.string.amazon_api_service);
+        String key = (String)getText(R.string.amazon_api_key);
+        String version = (String)getText(R.string.amazon_api_version);
+        String operation = (String)getText(R.string.amazon_api_operation);
+        String searchIndex = (String)getText(R.string.amazon_api_searchindex);
+        Uri.Builder uriBuilder = new Uri.Builder();
+        uriBuilder.scheme("http");
+        uriBuilder.encodedAuthority(endpoint);
+        uriBuilder.appendQueryParameter("Service", service);
+        uriBuilder.appendQueryParameter("AWSAccessKeyId", key);
+        uriBuilder.appendQueryParameter("Operation", operation);
+        uriBuilder.appendQueryParameter("SearchIndex", searchIndex);
+        uriBuilder.appendQueryParameter("Title", keyword);
+        String uriStr = uriBuilder.toString();
+        Log.d("OK", uriStr);
+/*
+        HttpGetTask task = new HttpGetTask(
+            PostActivity.this,
+            uriStr,
+
+            // タスク完了時に呼ばれるUIのハンドラ
+            new HttpGetHandler() {
+              @Override
+              public void onGetCompleted(String response) {
+                // JSONをパース
+                try {
+                  JSONObject result = new JSONObject(response);
+                  String dataStr = result.getString("data");
+                  JSONObject dataJSON = new JSONObject(dataStr);
+                  youtubeID = dataJSON.getString("youtube_id");
+                  artist = dataJSON.getString("artist");
+                  title = dataJSON.getString("title");
+                } catch (JSONException e) {
+                  e.printStackTrace();
+                }
+              }
+
+              @Override
+              public void onGetFailed(String response) {
+                Toast.makeText(
+                    getApplicationContext(),
+                    "エラーが発生しました。",
+                    Toast.LENGTH_LONG
+                    ).show();
+              }
+            }
+          );
+          task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+          */
       }
-    });
+		});
 
 		barcodeButton.setOnClickListener(new View.OnClickListener() {
       @Override
