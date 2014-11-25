@@ -3,6 +3,7 @@ package com.parse.mealspotting;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 
 public class SubDealListActivity extends ListActivity {
 
@@ -28,8 +30,11 @@ public class SubDealListActivity extends ListActivity {
 					public ParseQuery<Message> create() {
 						ParseQuery query = new ParseQuery("Contact");
 						
-						// Include the post data with each comment
-						// query.include("User");
+						// 後々fetchのときにつかえるかも
+						// query.include("Textbook");
+						
+						// String s = ParseUser.getCurrentUser().getUsername();
+						query.whereEqualTo("toUser", ParseUser.getCurrentUser());
 						
 						return query;
 					}
