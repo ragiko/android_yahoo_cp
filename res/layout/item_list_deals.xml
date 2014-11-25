@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+
+    <TextView
+        android:id="@+id/deal_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip" />
+    
+    <TextView
+        android:id="@+id/deal_from_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip"
+        android:text="from" />
+
+    <TextView
+        android:id="@+id/deal_from_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip" />
+    
+    <TextView
+        android:id="@+id/deal_to_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip"
+        android:text="to" />
+    
+    <TextView
+        android:id="@+id/deal_to_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip" />
+ 
+</LinearLayout>
