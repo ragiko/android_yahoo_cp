@@ -35,7 +35,7 @@
             android:label="search" >
         </activity>
         <activity
-            android:name=".TextActivity"
+            android:name=".BookActivity"
             android:label="text" >
         </activity>
         <activity

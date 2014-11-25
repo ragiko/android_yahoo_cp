@@ -6,13 +6,13 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 
-@ParseClassName("Text")
-public class Text extends ParseObject {
+@ParseClassName("Textbook")
+public class Book extends ParseObject {
 
-	public Text() {
+	public Book() {
 		// A default constructor is required.
 	}
-	
+
 	public String getId() {
 		return getObjectId();
 	}
@@ -28,7 +28,7 @@ public class Text extends ParseObject {
 	public void setTitle(String title) {
 		put("title", title);
 	}
-	
+
 	public String getAuthor() {
 		return getString("author");
 	}
@@ -36,7 +36,7 @@ public class Text extends ParseObject {
 	public void setAuthor(String author) {
 		put("author", author);
 	}
-	
+
 	public String getBody() {
 		return getString("body");
 	}
@@ -45,14 +45,14 @@ public class Text extends ParseObject {
 		put("body", body);
 	}
 
-	public ParseFile getTextThumb() {
+	public ParseFile getBookThumb() {
 		return getParseFile("text_thumb");
 	}
 
-	public void setTextThumb(ParseFile file) {
+	public void setBookThumb(ParseFile file) {
 		put("text_thumb", file);
 	}
-	
+
 	public ParseFile getPicture() {
 		return getParseFile("picture");
 	}
@@ -60,7 +60,7 @@ public class Text extends ParseObject {
 	public void setPicture(ParseFile file) {
 		put("picture", file);
 	}
-	
+
 	public Integer getPrice() {
 		return getInt("price");
 	}
@@ -68,7 +68,7 @@ public class Text extends ParseObject {
 	public void setPrice(int price) {
 		put("price", price);
 	}
-	
+
 	public String getUniversity() {
 		return getString("university");
 	}
@@ -76,15 +76,15 @@ public class Text extends ParseObject {
 	public void setUniversity(String university) {
 		put("university", university);
 	}
-	
+
 	public String getDepertment() {
-		return getString("depertment");
+		return getString("department");
 	}
 
 	public void setDepertment(String depertment) {
-		put("depertment", depertment);
+		put("department", depertment);
 	}
-	
+
 	public Integer getYear() {
 		return getInt("year");
 	}
@@ -92,7 +92,7 @@ public class Text extends ParseObject {
 	public void setYear(int year) {
 		put("year", year);
 	}
-	
+
 	public ParseUser getUser() {
 		return getParseUser("user");
 	}

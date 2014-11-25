@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 /*
@@ -36,9 +35,6 @@ import com.parse.ParseUser;
  * 出品情報投稿画面のアクティビティ
  */
 public class PostActivity extends Activity {
-
-	private Meal meal;
-
 	//インテントが返って来た時の判別コード
 	private static final int REQUEST_GALLERY = 0;
 	private static final int REQUEST_CAMERA = 1;
@@ -201,7 +197,7 @@ public class PostActivity extends Activity {
 
       // EditTextから情報を取得する
       String detail = detailEditText.getText().toString();
-      String price = priceEditText.getText().toString();
+      int price = Integer.parseInt(priceEditText.getText().toString());
       int year = yearPicker.getValue();
 
       // Parseに保存するために画像をbyte[]に変換する
@@ -212,21 +208,21 @@ public class PostActivity extends Activity {
 
       // Parseに保存する
       user = ParseUser.getCurrentUser();
-      ParseObject textInfo = new ParseObject("Textbook");
-      textInfo.put("title", "test");
-      textInfo.put("author", "test author");
-      textInfo.put("body", detail);
-      textInfo.put("price", price);
-      textInfo.put("university", "岐阜大学");
-      textInfo.put("department", "工学部");
-      textInfo.put("year", year);
-      textInfo.put("picture", photoFile);
-      textInfo.put("user", user);
+      Book book = new Book();
+      book.setUser(user);
+      book.setUniversity("岐阜大学");
+      book.setDepertment("工学部");
+      book.setTitle("線形代数");
+      book.setAuthor("A");
+      book.setBody(detail);
+      book.setBookThumb(photoFile);
+      book.setPicture(photoFile);
+      book.setPrice(price);
+      book.setYear(year);
 
       try {
-        textInfo.save();
-      } catch (ParseException e) {
-
+        book.save();
+      } catch(ParseException e) {
       }
 
       return null;
