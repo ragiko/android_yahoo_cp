@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 
 public class MealListActivity extends ListActivity {
 
@@ -26,6 +27,17 @@ public class MealListActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getListView().setClickable(false);
+		
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if (currentUser != null) {
+			// do stuff with the user
+			String objectId = currentUser.getObjectId();
+			Log.d("login Success", objectId);
+		  // do stuff with the user
+		} else {
+		  // show the signup or login screen
+			Log.d("login Error", "Fuck");
+		}
 
 		textAdapter = new BookAdapter(this,
 				new ParseQueryAdapter.QueryFactory<Book>() {
