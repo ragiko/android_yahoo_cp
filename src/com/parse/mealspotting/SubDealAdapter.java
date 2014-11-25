@@ -91,6 +91,15 @@ public class SubDealAdapter extends ParseQueryAdapter<Message>  {
 
 			}
 		});
+		
+		// 後で試す
+		// http://murayama.hatenablog.com/entry/2013/11/30/093741
+//		ParseObject object = results.get(0);
+//		object.fetchIfNeededInBackground(new GetCallback<ParseObject>() {
+//		  public void done(ParseObject object, ParseException e) {
+//		    // all fields of the object will now be available here.
+//		  }
+//		});
 
 		return v;
 	}

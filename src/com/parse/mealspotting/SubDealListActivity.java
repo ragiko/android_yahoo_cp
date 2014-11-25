@@ -1,14 +1,17 @@
 package com.parse.mealspotting;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
@@ -28,13 +31,17 @@ public class SubDealListActivity extends ListActivity {
 		dealAdapter = new SubDealAdapter(this,
 				new ParseQueryAdapter.QueryFactory<Message>() {
 					public ParseQuery<Message> create() {
-						ParseQuery query = new ParseQuery("Contact");
+						
+						// 参考: http://murayama.hatenablog.com/entry/2013/11/30/093741
+						List<ParseQuery<Message>> queries = new ArrayList<ParseQuery<Message>>();
+						
+						queries.add((new ParseQuery("Contact")).whereEqualTo("toUser", ParseUser.getCurrentUser()));
+						queries.add((new ParseQuery("Contact")).whereEqualTo("fromUser", ParseUser.getCurrentUser()));
+						
+						ParseQuery<Message> query = ParseQuery.or(queries);
 						
 						// 後々fetchのときにつかえるかも
 						// query.include("Textbook");
-						
-						// String s = ParseUser.getCurrentUser().getUsername();
-						query.whereEqualTo("toUser", ParseUser.getCurrentUser());
 						
 						return query;
 					}
