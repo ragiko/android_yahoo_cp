@@ -11,7 +11,9 @@
 
 	    <TextView
 	            style="@style/Section"
-	            android:text="大学・学部情報" />
+	            android:text="大学・学部情報"
+	            android:focusable="true"
+                android:focusableInTouchMode="true" />
 
 	    <LinearLayout style="@style/PostItemLayout" >
 
@@ -67,14 +69,13 @@
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
-	            android:ems="10"
-	            android:text="書名から検索する" />
+	            android:ems="10" />
 
 	        <Button
 	            android:id="@+id/button_search_post"
 	            style="@style/Button"
-	            android:layout_width="70dp"
-	            android:text="検索" />
+	            android:layout_width="130dp"
+	            android:text="書名で検索" />
 
 	    </LinearLayout>
 
@@ -84,7 +85,7 @@
 	        android:id="@+id/button_barcode_post"
 	        style="@style/Button"
 	        android:layout_width="200dp"
-	        android:text="バーコードから取得する" />
+	        android:text="バーコードから取得" />
 
 	    </LinearLayout>
 
@@ -102,15 +103,15 @@
 	        <Button
 	            android:id="@+id/button_camera_post"
 	            style="@style/Button"
-	            android:layout_width="70dp"
+	            android:layout_width="100dp"
 	            android:layout_marginRight="10dp"
 	            android:text="撮影する" />
 
 	        <Button
 	            android:id="@+id/button_gallery_post"
 	            style="@style/Button"
-	            android:layout_width="130dp"
-	            android:text="ギャラリーから選ぶ" />
+	            android:layout_width="100dp"
+	            android:text="選ぶ" />
 
 	    </LinearLayout>
 
@@ -176,7 +177,7 @@
 	    <Button
 	        android:id="@+id/button_submit_post"
 	        style="@style/Button"
-	        android:layout_width="100dp"
+	        android:layout_width="120dp"
 	        android:text="投稿する" />
 
 	</LinearLayout>
