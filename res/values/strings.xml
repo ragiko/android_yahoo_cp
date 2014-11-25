@@ -14,6 +14,8 @@
     <string name="amazon_api_endpoint">http://ecs.amazonaws.jp/onca/xml</string>
     <string name="amazon_api_service">AWSECommerceService</string>
     <string name="amazon_api_key">AKIAJ67AZYWA67JCWXHQ</string>
+    <string name="amazon_api_secret_key">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</string>
+    <string name="amazon_api_associate">ragiko-22</string>
     <string name="amazon_api_version">2009\\-07\\-01</string>
     <string name="amazon_api_operation">ItemSearch</string>
     <string name="amazon_api_searchindex">Books</string>

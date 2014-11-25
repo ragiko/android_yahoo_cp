@@ -1,13 +1,17 @@
 package com.parse.mealspotting;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -16,7 +20,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 /*
  * NewMealActivity contains two fragments that handle
@@ -34,14 +44,19 @@ public class PostActivity extends Activity {
 	private static final int REQUEST_CAMERA = 1;
 
 	// View
-	private Button changeUnivButton, changeDepButton, searchButton, barcodeButton;
+	private Spinner changeDepSpinner;
+	private Button searchButton, barcodeButton;
   private Button cameraButton, galleryButton, submitButton;
-  private TextView univTextView, depTextView;
+  private TextView univTextView;
   private EditText searchEditText, detailEditText, priceEditText;
   private NumberPicker yearPicker;
+  private Dialog progressDialog;
 
   //日時・時刻を取得するためのインスタンス
   private Calendar obj_cd = Calendar.getInstance();
+
+  private Bitmap img;
+  private ParseUser user;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,22 +68,6 @@ public class PostActivity extends Activity {
 		findViews();
 
 		// ボタンにクリックリスナーを登録
-		changeUnivButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        // 大学名を変更
-
-      }
-    });
-
-		changeDepButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        // 学部を変更
-
-      }
-    });
-
 		searchButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -79,6 +78,8 @@ public class PostActivity extends Activity {
         String endpoint = (String)getText(R.string.amazon_api_endpoint);
         String service = (String)getText(R.string.amazon_api_service);
         String key = (String)getText(R.string.amazon_api_key);
+        String secretKey = (String)getText(R.string.amazon_api_secret_key);
+        String associateTag = (String)getText(R.string.amazon_api_associate);
         String version = (String)getText(R.string.amazon_api_version);
         String operation = (String)getText(R.string.amazon_api_operation);
         String searchIndex = (String)getText(R.string.amazon_api_searchindex);
@@ -87,6 +88,7 @@ public class PostActivity extends Activity {
         uriBuilder.encodedAuthority(endpoint);
         uriBuilder.appendQueryParameter("Service", service);
         uriBuilder.appendQueryParameter("AWSAccessKeyId", key);
+        uriBuilder.appendQueryParameter("AssociateTag", associateTag);
         uriBuilder.appendQueryParameter("Operation", operation);
         uriBuilder.appendQueryParameter("SearchIndex", searchIndex);
         uriBuilder.appendQueryParameter("Title", keyword);
@@ -160,17 +162,13 @@ public class PostActivity extends Activity {
 		submitButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        // 投稿する
-        String detail = detailEditText.getText().toString();
-        String price = priceEditText.getText().toString();
-        int year = yearPicker.getValue();
+        new RemoteDataTask().execute();
       }
-    });
+		});
 
 		// NumberPickerの設定
 		int presentYear = obj_cd.get(Calendar.YEAR);
 		int startYear = presentYear - 10;
-		Log.d("OK", Integer.toString(presentYear));
 		yearPicker.setMaxValue(presentYear);
 		yearPicker.setMinValue(startYear);
 	}
@@ -178,8 +176,7 @@ public class PostActivity extends Activity {
 	// Viewの取得
 	private void findViews() {
 	  // ボタンのViewを取得
-    changeUnivButton = (Button)findViewById(R.id.button_change_university);
-    changeDepButton = (Button)findViewById(R.id.button_change_department);
+    changeDepSpinner = (Spinner)findViewById(R.id.spinner_dep_post);
     searchButton = (Button)findViewById(R.id.button_search_post);
     barcodeButton = (Button)findViewById(R.id.button_barcode_post);
     cameraButton = (Button)findViewById(R.id.button_camera_post);
@@ -188,7 +185,6 @@ public class PostActivity extends Activity {
 
     // テキストビューのViewを取得
     univTextView = (TextView)findViewById(R.id.textview_university);
-    depTextView = (TextView)findViewById(R.id.textview_department);
 
     // エディットテキストのViewを取得
     searchEditText = (EditText)findViewById(R.id.edittext_search_post);
@@ -199,6 +195,63 @@ public class PostActivity extends Activity {
     yearPicker = (NumberPicker)findViewById(R.id.numpicker_year_post);
 	}
 
+	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
+    // Override this method to do custom remote calls
+    protected Void doInBackground(Void... params) {
+
+      // EditTextから情報を取得する
+      String detail = detailEditText.getText().toString();
+      String price = priceEditText.getText().toString();
+      int year = yearPicker.getValue();
+
+      // Parseに保存するために画像をbyte[]に変換する
+      ByteArrayOutputStream bos = new ByteArrayOutputStream();
+      img.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+      byte[] byteData = bos.toByteArray();
+      ParseFile photoFile = new ParseFile("meal_photo.jpg", byteData);
+
+      // Parseに保存する
+      user = ParseUser.getCurrentUser();
+      ParseObject textInfo = new ParseObject("Textbook");
+      textInfo.put("title", "test");
+      textInfo.put("author", "test author");
+      textInfo.put("body", detail);
+      textInfo.put("price", price);
+      textInfo.put("university", "岐阜大学");
+      textInfo.put("department", "工学部");
+      textInfo.put("year", year);
+      textInfo.put("picture", photoFile);
+      textInfo.put("user", user);
+
+      try {
+        textInfo.save();
+      } catch (ParseException e) {
+
+      }
+
+      return null;
+    }
+
+    @Override
+    protected void onPreExecute() {
+      PostActivity.this.progressDialog = ProgressDialog.show(PostActivity.this, "", "投稿中...", true);
+      super.onPreExecute();
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+      super.onProgressUpdate(values);
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+      Log.d("OK", "post完了");
+
+      // プログレスダイアログを消す
+      PostActivity.this.progressDialog.dismiss();
+    }
+  }
+
 	//インテント先から結果が返ってきたときの処理
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -207,21 +260,16 @@ public class PostActivity extends Activity {
        if(requestCode == REQUEST_GALLERY) {  // ギャラリーで画像が選択された
        try {
          InputStream in = getContentResolver().openInputStream(data.getData());
-         Bitmap img = BitmapFactory.decodeStream(in);
+         img = BitmapFactory.decodeStream(in);
          in.close();
          imgView.setImageBitmap(img);
        } catch(Exception e) {
 
        }
      } else if(requestCode == REQUEST_CAMERA) {  // カメラで写真が撮影された
-         Bitmap img = (Bitmap)data.getExtras().get("data");  // カメラで撮影された写真を取得
+         img = (Bitmap)data.getExtras().get("data");  // カメラで撮影された写真を取得
          imgView.setImageBitmap(img);
        }
     }
   }
-
-	public Meal getCurrentMeal() {
-		return meal;
-	}
-
 }
