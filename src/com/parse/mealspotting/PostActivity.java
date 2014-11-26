@@ -57,13 +57,16 @@ public class PostActivity extends Activity {
   //日時・時刻を取得するためのインスタンス
   private Calendar obj_cd = Calendar.getInstance();
 
-  private Bitmap img;
+  private Bitmap img = null;
   private ParseUser user;
   private int selectedItemId;   // 書籍検索画面でどのアイテムが選択されたか
   private String[] titleArray;
   private String[] authorArray;
   private String[] publisherArray;
   private String[] imageUrlArray;
+  private String selectedTitle = "";
+  private String selectedAuthor = "";
+  private String selectedPublisher = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -187,7 +190,11 @@ public class PostActivity extends Activity {
 		submitButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        new RemoteDataTask().execute();
+        if(!selectedTitle.equals("") && !priceEditText.getText().toString().equals("")) {   // 入力必須項目のチェック
+          new RemoteDataTask().execute();
+        } else {
+          Toast.makeText(PostActivity.this, "入力必須項目を埋めてください。", Toast.LENGTH_LONG).show();
+        }
       }
 		});
 
@@ -226,32 +233,34 @@ public class PostActivity extends Activity {
 	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
     // Override this method to do custom remote calls
     protected Void doInBackground(Void... params) {
+      Book book = new Book();
 
-      // EditTextから情報を取得する
-      String detail = detailEditText.getText().toString();
+      // 入力必須でない項目は個別に対応
+      if(!detailEditText.getText().toString().equals("")) {
+        String detail = detailEditText.getText().toString();
+        book.setBody(detail);
+      }
+      if(img != null) {
+        // Parseに保存するために画像をbyte[]に変換する
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        img.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        byte[] byteData = bos.toByteArray();
+        ParseFile photoFile = new ParseFile("meal_photo.jpg", byteData);
+        book.setPicture(photoFile);
+      }
+
+      // 入力必須項目は気にせずset
       int price = Integer.parseInt(priceEditText.getText().toString());
       int year = yearPicker.getValue();
-
-      // Parseに保存するために画像をbyte[]に変換する
-      ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      img.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-      byte[] byteData = bos.toByteArray();
-      ParseFile photoFile = new ParseFile("meal_photo.jpg", byteData);
-
-      // Parseに保存する
-      user = ParseUser.getCurrentUser();
-      Book book = new Book();
-      book.setUser(user);
-      book.setUniversity("岐阜大学");
-      book.setDepertment("工学部");
-      book.setTitle(titleArray[selectedItemId]);
-      book.setAuthor(authorArray[selectedItemId]);
-      book.setPublisher(publisherArray[selectedItemId]);
-      book.setBody(detail);
-      book.setBookThumb(photoFile);
-      book.setPicture(photoFile);
+      book.setUniversity("岐阜大学");   // 要修正
+      book.setDepertment("工学部");  // 要修正
+      book.setTitle(selectedTitle);
+      book.setAuthor(selectedAuthor);
+      book.setPublisher(selectedPublisher);
       book.setPrice(price);
       book.setYear(year);
+      user = ParseUser.getCurrentUser();
+      book.setUser(user);
 
       try {
         book.save();
@@ -300,9 +309,12 @@ public class PostActivity extends Activity {
          imgView.setImageBitmap(img);
        } else if(requestCode == REQUEST_BOOKLIST) {   // 書籍検索画面で書籍が選択された
          selectedItemId = data.getIntExtra("selectedItemId", 0);  // 番号を取得
-         titleTextView.setText(titleArray[selectedItemId]);   // 書籍の情報を表示
-         authorTextView.setText("著者" + authorArray[selectedItemId]);
-         publisherTextView.setText("出版社" + publisherArray[selectedItemId]);
+         selectedTitle = titleArray[selectedItemId];
+         selectedAuthor = authorArray[selectedItemId];
+         selectedPublisher = publisherArray[selectedItemId];
+         titleTextView.setText(selectedTitle);   // 書籍の情報を表示
+         authorTextView.setText("著者：" + selectedAuthor);
+         publisherTextView.setText("出版社：" + selectedPublisher);
        }
     }
   }
