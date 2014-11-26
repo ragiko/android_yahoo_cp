@@ -4,6 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Calendar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -22,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -71,26 +76,17 @@ public class PostActivity extends Activity {
         String keyword = searchEditText.getText().toString();
 
         // APIのURLを生成
-        String endpoint = (String)getText(R.string.amazon_api_endpoint);
-        String service = (String)getText(R.string.amazon_api_service);
-        String key = (String)getText(R.string.amazon_api_key);
-        String secretKey = (String)getText(R.string.amazon_api_secret_key);
-        String associateTag = (String)getText(R.string.amazon_api_associate);
-        String version = (String)getText(R.string.amazon_api_version);
-        String operation = (String)getText(R.string.amazon_api_operation);
-        String searchIndex = (String)getText(R.string.amazon_api_searchindex);
+        String endpoint = (String)getText(R.string.rakuten_api_endpoint);
+        String appId = (String)getText(R.string.rakuten_api_appid);
         Uri.Builder uriBuilder = new Uri.Builder();
-        uriBuilder.scheme("http");
+        uriBuilder.scheme("https");
         uriBuilder.encodedAuthority(endpoint);
-        uriBuilder.appendQueryParameter("Service", service);
-        uriBuilder.appendQueryParameter("AWSAccessKeyId", key);
-        uriBuilder.appendQueryParameter("AssociateTag", associateTag);
-        uriBuilder.appendQueryParameter("Operation", operation);
-        uriBuilder.appendQueryParameter("SearchIndex", searchIndex);
-        uriBuilder.appendQueryParameter("Title", keyword);
+        uriBuilder.appendQueryParameter("format", "json");
+        uriBuilder.appendQueryParameter("title", keyword);
+        uriBuilder.appendQueryParameter("applicationId", appId);
         String uriStr = uriBuilder.toString();
         Log.d("OK", uriStr);
-/*
+
         HttpGetTask task = new HttpGetTask(
             PostActivity.this,
             uriStr,
@@ -102,11 +98,16 @@ public class PostActivity extends Activity {
                 // JSONをパース
                 try {
                   JSONObject result = new JSONObject(response);
-                  String dataStr = result.getString("data");
-                  JSONObject dataJSON = new JSONObject(dataStr);
-                  youtubeID = dataJSON.getString("youtube_id");
-                  artist = dataJSON.getString("artist");
-                  title = dataJSON.getString("title");
+                  JSONArray itemArray = result.getJSONArray("Items");
+                  for(int i=0; i<itemArray.length(); i++) {
+                    JSONObject jsonObject = itemArray.getJSONObject(i);
+                    JSONObject jsonObjectItem = jsonObject.getJSONObject("Item");
+                    String title = jsonObjectItem.getString("title");
+                    String author = jsonObjectItem.getString("author");
+                    String publisher = jsonObjectItem.getString("publisherName");
+                    String imageUrl = jsonObjectItem.getString("mediumImageUrl");
+                    Log.d("OK", title);
+                  }
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
@@ -123,7 +124,6 @@ public class PostActivity extends Activity {
             }
           );
           task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-          */
       }
 		});
 
