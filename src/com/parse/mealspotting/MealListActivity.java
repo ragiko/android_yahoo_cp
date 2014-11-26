@@ -84,6 +84,11 @@ public class MealListActivity extends ListActivity {
 			dealBook();
 			break;
 		}
+		
+		case R.id.action_profile: {
+			profile();
+			break;
+		}
 
 		}
 		return super.onOptionsItemSelected(item);
@@ -101,6 +106,11 @@ public class MealListActivity extends ListActivity {
 	
 	private void dealBook() {
 		Intent i = new Intent(this, DealListActivity.class);
+		startActivityForResult(i, 0);
+	}
+	
+	private void profile() {
+		Intent i = new Intent(this, ProfileListActivity.class);
 		startActivityForResult(i, 0);
 	}
 

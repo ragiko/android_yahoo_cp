@@ -6,11 +6,13 @@ import java.util.List;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.parse.GetCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
@@ -27,30 +29,78 @@ public class DealListActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getListView().setClickable(false);
+		
+		// TODO: 要リファクタリング
+	    final String bookId = getIntent().getStringExtra("user_book");
+	
+	    if (bookId != null) {
+	    	// profile activityからインテント
+	    	// 教科書についてのコメントの一覧を表示
+	    	// Bookを取得して、取引を検索
+	    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Textbook");
+	    	query.getInBackground(bookId, new GetCallback<ParseObject>() {
+				@Override
+				public void done(final ParseObject book, com.parse.ParseException e) {
+					if (e == null) {
+						
+						dealAdapter = new DealAdapter(DealListActivity.this,
+								new ParseQueryAdapter.QueryFactory<Deal>() {
+									public ParseQuery<Deal> create() {
+										ParseQuery query = new ParseQuery("Contact");
+										
+										query.whereEqualTo("textBook", book);
+										query.whereEqualTo("toUser", ParseUser.getCurrentUser());
 
-		dealAdapter = new DealAdapter(this,
-				new ParseQueryAdapter.QueryFactory<Deal>() {
-					public ParseQuery<Deal> create() {
+										query.orderByDescending("createdAt");
+
+										// 後々fetchのときにつかえるかも
+										// query.include("Textbook");
+
+										return query;
+									}
+								});
 						
-						// 参考: http://murayama.hatenablog.com/entry/2013/11/30/093741
-						List<ParseQuery<Deal>> queries = new ArrayList<ParseQuery<Deal>>();
+						mDealAdapter = dealAdapter; 
+						setListAdapter(mDealAdapter);
 						
-						queries.add((new ParseQuery("Contact")).whereEqualTo("toUser", ParseUser.getCurrentUser()));
-						queries.add((new ParseQuery("Contact")).whereEqualTo("fromUser", ParseUser.getCurrentUser()));
-						
-						ParseQuery<Deal> query = ParseQuery.or(queries);
-						
-						query.orderByDescending("createdAt");
-						
-						// 後々fetchのときにつかえるかも
-						// query.include("Textbook");
-						
-						return query;
+					} else {
+						Log.d("texterror", e.getMessage());
 					}
-				});
+				}
+			});
+	    } else {
+	    	// 普通の場合
+			dealAdapter = new DealAdapter(this,
+					new ParseQueryAdapter.QueryFactory<Deal>() {
+						public ParseQuery<Deal> create() {
 
-		mDealAdapter = dealAdapter; // アダプターをクリックリスナーで使用
-		setListAdapter(mDealAdapter);
+							// 参考:
+							// http://murayama.hatenablog.com/entry/2013/11/30/093741
+							List<ParseQuery<Deal>> queries = new ArrayList<ParseQuery<Deal>>();
+
+							queries.add((new ParseQuery("Contact"))
+									.whereEqualTo("toUser",
+											ParseUser.getCurrentUser()));
+							queries.add((new ParseQuery("Contact"))
+									.whereEqualTo("fromUser",
+											ParseUser.getCurrentUser()));
+
+							ParseQuery<Deal> query = ParseQuery.or(queries);
+
+							query.orderByDescending("createdAt");
+
+							// 後々fetchのときにつかえるかも
+							// query.include("Textbook");
+
+							return query;
+						}
+					});
+			
+			mDealAdapter = dealAdapter; // アダプターをクリックリスナーで使用
+			setListAdapter(mDealAdapter);
+	    }
+
+		
 	}
 
 	@Override

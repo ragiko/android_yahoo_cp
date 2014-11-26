@@ -37,8 +37,6 @@ public class DealAdapter extends ParseQueryAdapter<Deal>  {
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Textbook");
 		String bookId = deal.getBook().getObjectId();
 		
-		Log.d("a", "a");
-		
 		query.getInBackground(bookId, new GetCallback<ParseObject>() {
 			@Override
 			public void done(ParseObject book, com.parse.ParseException e) {
