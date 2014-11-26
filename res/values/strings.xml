@@ -23,16 +23,674 @@
         <item></item>
     </string-array>
 
-    <string-array name="departments">
-        <item>工学部</item>
+    <string-array name="university0">
+        <item>人文学部</item>
         <item>教育学部</item>
-        <item></item>
+        <item>医学部</item>
+        <item>工学部</item>
+        <item>生物資源学部</item>
     </string-array>
-
+    <string-array name="university1">
+        <item>神学部</item>
+        <item>文学部</item>
+        <item>総合人間科学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>外国語学部</item>
+        <item>国際教養学部</item>
+        <item>理工学部</item>
+    </string-array>
+    <string-array name="university2">
+        <item>文学部</item>
+        <item>国際教養学部</item>
+        <item>国際英語学部</item>
+        <item>心理学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>経営学部</item>
+        <item>総合政策学部</item>
+        <item>現代社会学部</item>
+        <item>工学部</item>
+        <item>スポーツ科学部</item>
+    </string-array>
+    <string-array name="university3">
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>商学部</item>
+        <item>理工学部</item>
+        <item>文学部</item>
+        <item>総合政策学部</item>
+    </string-array>
+    <string-array name="university4">
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>薬学部</item>
+        <item>工学部</item>
+        <item>芸術工学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university5">
+        <item>総合人間学部</item>
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>薬学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university6">
+        <item>工芸科学部</item>
+    </string-array>
+    <string-array name="university7">
+        <item>経済学部</item>
+        <item>経営学部</item>
+        <item>法学部</item>
+        <item>外国語学部</item>
+        <item>文化学部</item>
+        <item>理学部</item>
+        <item>コンピュータ理工学部</item>
+        <item>総合生命科学部</item>
+    </string-array>
+    <string-array name="university8">
+        <item>文化教育学部</item>
+        <item>経済学部</item>
+        <item>医学部</item>
+        <item>理工学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university9">
+        <item>人文学部</item>
+        <item>教育学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+        <item>繊維学部</item>
+    </string-array>
+    <string-array name="university10">
+        <item>経済学部</item>
+        <item>経営学部</item>
+        <item>工学部</item>
+        <item>理学部</item>
+        <item>環境人間学部</item>
+        <item>看護学部</item>
+    </string-array>
+    <string-array name="university11">
+        <item>外国語学部</item>
+        <item>経済学部</item>
+        <item>文学部</item>
+        <item>法学部</item>
+        <item>地域創生学群</item>
+        <item>国際環境工学部</item>
+    </string-array>
+    <string-array name="university12">
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>薬学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+        <item>獣医学部</item>
+        <item>水産学部</item>
+    </string-array>
+    <string-array name="university13">
+        <item>教育学部</item>
+    </string-array>
+    <string-array name="university14">
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>法経学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>薬学部</item>
+        <item>看護学部</item>
+        <item>工学部</item>
+        <item>園芸学部</item>
+    </string-array>
+    <string-array name="university15">
+        <item>神学部</item>
+        <item>文学部</item>
+        <item>社会学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>商学部</item>
+        <item>政策学部</item>
+        <item>文化情報学部</item>
+        <item>理工学部</item>
+        <item>生命医科学部</item>
+        <item>スポーツ健康科学部</item>
+        <item>心理学部</item>
+        <item>グローバル・コミュニケーション学部</item>
+        <item>グローバル地域文化学部</item>
+    </string-array>
+    <string-array name="university16">
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>情報文化学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>農学部</item>
+        <item>工学部</item>
+    </string-array>
+    <string-array name="university17">
+        <item>政経学部</item>
+        <item>経営学部</item>
+        <item>体育学部</item>
+        <item>理工学部</item>
+        <item>法学部</item>
+        <item>文学部</item>
+        <item>21世紀アジア学部</item>
+    </string-array>
+    <string-array name="university18">
+        <item>国際教養学部</item>
+    </string-array>
+    <string-array name="university19">
+        <item>文学部</item>
+        <item>神道文化学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>人間開発学部</item>
+    </string-array>
+    <string-array name="university20">
+        <item>教養学部</item>
+        <item>教育学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>工学部</item>
+    </string-array>
+    <string-array name="university21">
+        <item>文学部</item>
+        <item>経済学部</item>
+        <item>外国語学部</item>
+        <item>法学部</item>
+        <item>国際関係学部</item>
+        <item>経営学部</item>
+        <item>環境創造学部</item>
+        <item>スポーツ・健康科学部</item>
+    </string-array>
+    <string-array name="university22">
+        <item>文学部</item>
+        <item>人間科学部</item>
+        <item>外国語学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>工学部</item>
+        <item>基礎工学部</item>
+    </string-array>
+    <string-array name="university23">
+        <item>商学部</item>
+        <item>経済学部</item>
+        <item>法学部</item>
+        <item>文学部</item>
+        <item>理学部</item>
+        <item>工学部</item>
+        <item>生活科学部</item>
+    </string-array>
+    <string-array name="university24">
+        <item>現代システム科学域</item>
+        <item>工学域</item>
+        <item>生命環境科学域</item>
+        <item>地域保健学域</item>
+    </string-array>
+    <string-array name="university25">
+        <item>人文学部</item>
+        <item>人間発達科学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>薬学部</item>
+        <item>工学部</item>
+        <item>芸術文化学部</item>
+    </string-array>
+    <string-array name="university26">
+        <item>経済学部</item>
+        <item>法学部</item>
+        <item>経営学部</item>
+        <item>商学部</item>
+        <item>文学部</item>
+        <item>ネットワーク情報学部</item>
+        <item>人間科学部</item>
+    </string-array>
+    <string-array name="university27">
+        <item>人文学部</item>
+        <item>教育学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+        <item>共同獣医学部</item>
+    </string-array>
+    <string-array name="university28">
+        <item>人文学部</item>
+        <item>地域教育文化学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university29">
+        <item>教育学部</item>
+        <item>地域科学部</item>
+        <item>医学部</item>
+        <item>工学部</item>
+        <item>応用生物科学部</item>
+    </string-array>
+    <string-array name="university30">
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>工学部</item>
+        <item>環境理工学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university31">
+        <item>法学部</item>
+        <item>教育学部</item>
+        <item>医学部</item>
+        <item>総合理工学部</item>
+        <item>生物資源科学部</item>
+    </string-array>
+    <string-array name="university32">
+        <item>医学部</item>
+        <item>薬学部</item>
+        <item>医療技術学部</item>
+        <item>福岡医療技術学部</item>
+        <item>経済学部</item>
+        <item>法学部</item>
+        <item>文学部</item>
+        <item>外国語学部</item>
+        <item>教育学部</item>
+        <item>理工学部</item>
+    </string-array>
+    <string-array name="university33">
+        <item>総合科学部</item>
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>薬学部</item>
+        <item>工学部</item>
+        <item>生物生産学部</item>
+    </string-array>
+    <string-array name="university34">
+        <item>人文学部</item>
+        <item>教育学部</item>
+        <item>医学部</item>
+        <item>理工学部</item>
+        <item>農学生命科学部</item>
+    </string-array>
+    <string-array name="university35">
+        <item>総合科学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>薬学部</item>
+        <item>工学部</item>
+    </string-array>
+    <string-array name="university36">
+        <item>法文学部</item>
+        <item>教育学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university37">
+        <item>文学部</item>
+        <item>経済学部</item>
+        <item>法学部</item>
+        <item>商学部</item>
+        <item>医学部</item>
+        <item>理工学部</item>
+        <item>総合政策学部</item>
+        <item>環境情報学部</item>
+        <item>看護医療学部</item>
+        <item>薬学部</item>
+    </string-array>
+    <string-array name="university38">
+        <item>人文学部</item>
+        <item>教育学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>農学部</item>
+        <item>工学部</item>
+    </string-array>
+    <string-array name="university39">
+        <item>法学部</item>
+        <item>法学部第二部</item>
+        <item>文理学部</item>
+        <item>経済学部</item>
+        <item>商学部</item>
+        <item>芸術学部</item>
+        <item>国際関係学部</item>
+        <item>理工学部</item>
+        <item>生産工学部</item>
+        <item>工学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>松戸歯学部</item>
+        <item>生物資源科学部</item>
+        <item>薬学部</item>
+        <item>短期大学部</item>
+    </string-array>
+    <string-array name="university40">
+        <item>政治経済学部</item>
+        <item>法学部</item>
+        <item>文化構想学部</item>
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>商学部</item>
+        <item>基幹理工学部</item>
+        <item>創造理工学部</item>
+        <item>先進理工学部</item>
+        <item>社会科学部</item>
+        <item>人間科学部</item>
+        <item>スポーツ科学部</item>
+        <item>国際教養学部</item>
+    </string-array>
+    <string-array name="university41">
+        <item>法学部</item>
+        <item>商学部</item>
+        <item>政治経済学部</item>
+        <item>文学部</item>
+        <item>理工学部</item>
+        <item>農学部</item>
+        <item>経営学部</item>
+        <item>情報コミュニケーション学部</item>
+        <item>国際日本学部</item>
+        <item>総合数理学部</item>
+    </string-array>
+    <string-array name="university42">
+        <item>文学部</item>
+        <item>経済学部</item>
+        <item>社会学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>国際学部</item>
+        <item>心理学部</item>
+    </string-array>
+    <string-array name="university43">
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>工学部</item>
+        <item>理学部</item>
+        <item>薬学部</item>
+        <item>農学部</item>
+        <item>医学部</item>
+    </string-array>
+    <string-array name="university44">
+        <item>理学部</item>
+        <item>工学部</item>
+        <item>薬学部</item>
+        <item>理工学部</item>
+        <item>基礎工学部</item>
+        <item>経営学部</item>
+    </string-array>
+    <string-array name="university45">
+        <item>文学部</item>
+        <item>教育学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>薬学部</item>
+        <item>農学部</item>
+        <item>工学部</item>
+    </string-array>
+    <string-array name="university46">
+        <item>文学部</item>
+        <item>経済学部</item>
+        <item>経営学部</item>
+        <item>法学部</item>
+        <item>工学部</item>
+        <item>教養学部</item>
+    </string-array>
+    <string-array name="university47">
+        <item>国際文化学部</item>
+        <item>生物学部</item>
+        <item>情報通信学部</item>
+        <item>文学部</item>
+        <item>観光学部</item>
+        <item>政治経済学部</item>
+        <item>法学部</item>
+        <item>教養学部</item>
+        <item>理学部</item>
+        <item>情報理工学部</item>
+        <item>工学部</item>
+        <item>体育学部</item>
+        <item>医学部</item>
+        <item>健康科学部</item>
+        <item>海洋学部</item>
+        <item>経営学部</item>
+        <item>基盤工学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university48">
+        <item>教育人間科学部</item>
+        <item>経済学部</item>
+        <item>経営学部</item>
+        <item>理工学部</item>
+    </string-array>
+    <string-array name="university49">
+        <item>法学部</item>
+        <item>文学部</item>
+        <item>経営学部</item>
+        <item>国際文化学部</item>
+        <item>人間環境学部</item>
+        <item>キャリアデザイン学部</item>
+        <item>デザイン工学部</item>
+        <item>グローバル教養学部</item>
+        <item>経済学部</item>
+        <item>社会学部</item>
+        <item>現代福祉学部</item>
+        <item>スポーツ健康学部</item>
+        <item>理工学部</item>
+        <item>生命科学部</item>
+        <item>情報科学部</item>
+    </string-array>
+    <string-array name="university50">
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>経営学部</item>
+        <item>外国語学部</item>
+        <item>人間科学部</item>
+        <item>理学部</item>
+        <item>工学部</item>
+    </string-array>
+    <string-array name="university51">
+        <item>文学部</item>
+        <item>国際文化学部</item>
+        <item>発達科学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>経営学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+        <item>海事科学部</item>
+    </string-array>
+    <string-array name="university52">
+        <item>法学部</item>
+        <item>産業社会学部</item>
+        <item>国際関係学部</item>
+        <item>政策科学部</item>
+        <item>文学部</item>
+        <item>映像学部</item>
+        <item>経済学部</item>
+        <item>経営学部</item>
+        <item>スポーツ健康科学部</item>
+        <item>理工学部</item>
+        <item>情報理工学部</item>
+        <item>生命科学部</item>
+        <item>薬学部</item>
+    </string-array>
+    <string-array name="university53">
+        <item>心理学部</item>
+        <item>地球環境科学部</item>
+        <item>社会福祉学部</item>
+        <item>法学部</item>
+        <item>経営学部</item>
+        <item>経済学部</item>
+        <item>文学部</item>
+        <item>仏教学部</item>
+    </string-array>
+    <string-array name="university54">
+        <item>教育学部</item>
+        <item>社会情報学部</item>
+        <item>医学部</item>
+        <item>理工学部</item>
+    </string-array>
+    <string-array name="university55">
+        <item>人文学部</item>
+        <item>教育学部</item>
+        <item>理学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university56">
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>経営学部</item>
+        <item>理工学部</item>
+        <item>建築学部</item>
+        <item>薬学部</item>
+        <item>文芸学部</item>
+        <item>総合社会学部</item>
+        <item>農学部</item>
+        <item>医学部</item>
+        <item>生物理工学部</item>
+        <item>工学部</item>
+        <item>産業理工学部</item>
+        <item>短期大学部</item>
+    </string-array>
+    <string-array name="university57">
+        <item>人間社会学域</item>
+        <item>理工学域</item>
+        <item>医薬保健学域</item>
+    </string-array>
+    <string-array name="university58">
+        <item>教育学部</item>
+        <item>経済学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>薬学部</item>
+        <item>工学部</item>
+        <item>環境科学部</item>
+        <item>水産学部</item>
+    </string-array>
+    <string-array name="university59">
+        <item>文学部</item>
+        <item>経済学部</item>
+        <item>法学部</item>
+        <item>人間環境学部</item>
+        <item>理工学部</item>
+        <item>建築・環境学部</item>
+        <item>看護学部</item>
+    </string-array>
+    <string-array name="university60">
+        <item>法学部</item>
+        <item>文学部</item>
+        <item>経済学部</item>
+        <item>商学部</item>
+        <item>社会学部</item>
+        <item>政策創造学部</item>
+        <item>外国語学部</item>
+        <item>人間健康学部</item>
+        <item>総合情報学部</item>
+        <item>社会安全学部</item>
+        <item>システム理工学部</item>
+        <item>環境都市工学部</item>
+        <item>化学生命工学部</item>
+    </string-array>
+    <string-array name="university61">
+        <item>神学部</item>
+        <item>社会学部</item>
+        <item>経済学部</item>
+        <item>人間福祉学部</item>
+        <item>文学部</item>
+        <item>法学部</item>
+        <item>商学部</item>
+        <item>国際学部</item>
+        <item>教育学部</item>
+        <item>総合政策学部</item>
+        <item>理工学部</item>
+    </string-array>
+    <string-array name="university62">
+        <item>都市教養学部</item>
+        <item>システムデザイン学部</item>
+        <item>健康福祉学部</item>
+    </string-array>
+    <string-array name="university63">
+        <item>教育学部</item>
+        <item>法学部</item>
+        <item>経済学部</item>
+        <item>医学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university64">
+        <item>人文学部</item>
+        <item>教育学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university65">
+        <item>医学部</item>
+        <item>工学部</item>
+        <item>地域学部</item>
+        <item>農学部</item>
+    </string-array>
+    <string-array name="university66">
+        <item>法文学部</item>
+        <item>教育学部</item>
+        <item>理学部</item>
+        <item>医学部</item>
+        <item>歯学部</item>
+        <item>工学部</item>
+        <item>農学部</item>
+        <item>共同獣医学部</item>
+        <item>水産学部</item>
+    </string-array>
+    
     <string-array name="years">
         <item>2014</item>
         <item>2013</item>
         <item></item>
     </string-array>
+    
+    
 
 </resources>
