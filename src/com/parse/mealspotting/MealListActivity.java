@@ -76,11 +76,6 @@ public class MealListActivity extends ListActivity {
 		}
 
 		case R.id.action_new: {
-			newMeal();
-			break;
-		}
-		
-		case R.id.action_post: {
 			postBook();
 			break;
 		}
@@ -92,11 +87,6 @@ public class MealListActivity extends ListActivity {
 
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	private void newMeal() {
-		Intent i = new Intent(this, NewMealActivity.class);
-		startActivityForResult(i, 0);
 	}
 
 	private void searchMeal() {
