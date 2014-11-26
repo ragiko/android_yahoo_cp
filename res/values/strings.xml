@@ -11,14 +11,8 @@
     <string name="meal_label">Add a Meal</string>
     <string name="save_button_text">Save</string>
     <string name="cancel_button_text">Cancel</string>
-    <string name="amazon_api_endpoint">http://ecs.amazonaws.jp/onca/xml</string>
-    <string name="amazon_api_service">AWSECommerceService</string>
-    <string name="amazon_api_key">AKIAJ67AZYWA67JCWXHQ</string>
-    <string name="amazon_api_secret_key">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</string>
-    <string name="amazon_api_associate">ragiko-22</string>
-    <string name="amazon_api_version">2009\\-07\\-01</string>
-    <string name="amazon_api_operation">ItemSearch</string>
-    <string name="amazon_api_searchindex">Books</string>
+    <string name="rakuten_api_endpoint">app.rakuten.co.jp/services/api/BooksBook/Search/20130522</string>
+    <string name="rakuten_api_appid">1012101564142430125</string>
 
     <string-array name="ratings_array">
         <item>5</item>

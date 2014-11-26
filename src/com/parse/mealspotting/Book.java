@@ -45,6 +45,14 @@ public class Book extends ParseObject {
 		put("body", body);
 	}
 
+	public String getPublisher() {
+    return getString("publisher");
+  }
+
+  public void setPublisher(String publisher) {
+    put("publisher", publisher);
+  }
+
 	public ParseFile getBookThumb() {
 		return getParseFile("text_thumb");
 	}

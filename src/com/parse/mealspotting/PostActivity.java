@@ -4,6 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Calendar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -22,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -38,12 +43,13 @@ public class PostActivity extends Activity {
 	//インテントが返って来た時の判別コード
 	private static final int REQUEST_GALLERY = 0;
 	private static final int REQUEST_CAMERA = 1;
+	private static final int REQUEST_BOOKLIST = 2;
 
 	// View
 	private Spinner changeDepSpinner;
 	private Button searchButton, barcodeButton;
   private Button cameraButton, galleryButton, submitButton;
-  private TextView univTextView;
+  private TextView univTextView, titleTextView, authorTextView, publisherTextView;
   private EditText searchEditText, detailEditText, priceEditText;
   private NumberPicker yearPicker;
   private Dialog progressDialog;
@@ -51,8 +57,16 @@ public class PostActivity extends Activity {
   //日時・時刻を取得するためのインスタンス
   private Calendar obj_cd = Calendar.getInstance();
 
-  private Bitmap img;
+  private Bitmap img = null;
   private ParseUser user;
+  private int selectedItemId;   // 書籍検索画面でどのアイテムが選択されたか
+  private String[] titleArray;
+  private String[] authorArray;
+  private String[] publisherArray;
+  private String[] imageUrlArray;
+  private String selectedTitle = "";
+  private String selectedAuthor = "";
+  private String selectedPublisher = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,26 +85,17 @@ public class PostActivity extends Activity {
         String keyword = searchEditText.getText().toString();
 
         // APIのURLを生成
-        String endpoint = (String)getText(R.string.amazon_api_endpoint);
-        String service = (String)getText(R.string.amazon_api_service);
-        String key = (String)getText(R.string.amazon_api_key);
-        String secretKey = (String)getText(R.string.amazon_api_secret_key);
-        String associateTag = (String)getText(R.string.amazon_api_associate);
-        String version = (String)getText(R.string.amazon_api_version);
-        String operation = (String)getText(R.string.amazon_api_operation);
-        String searchIndex = (String)getText(R.string.amazon_api_searchindex);
+        String endpoint = (String)getText(R.string.rakuten_api_endpoint);
+        String appId = (String)getText(R.string.rakuten_api_appid);
         Uri.Builder uriBuilder = new Uri.Builder();
-        uriBuilder.scheme("http");
+        uriBuilder.scheme("https");
         uriBuilder.encodedAuthority(endpoint);
-        uriBuilder.appendQueryParameter("Service", service);
-        uriBuilder.appendQueryParameter("AWSAccessKeyId", key);
-        uriBuilder.appendQueryParameter("AssociateTag", associateTag);
-        uriBuilder.appendQueryParameter("Operation", operation);
-        uriBuilder.appendQueryParameter("SearchIndex", searchIndex);
-        uriBuilder.appendQueryParameter("Title", keyword);
+        uriBuilder.appendQueryParameter("format", "json");
+        uriBuilder.appendQueryParameter("title", keyword);
+        uriBuilder.appendQueryParameter("applicationId", appId);
         String uriStr = uriBuilder.toString();
         Log.d("OK", uriStr);
-/*
+
         HttpGetTask task = new HttpGetTask(
             PostActivity.this,
             uriStr,
@@ -102,11 +107,39 @@ public class PostActivity extends Activity {
                 // JSONをパース
                 try {
                   JSONObject result = new JSONObject(response);
-                  String dataStr = result.getString("data");
-                  JSONObject dataJSON = new JSONObject(dataStr);
-                  youtubeID = dataJSON.getString("youtube_id");
-                  artist = dataJSON.getString("artist");
-                  title = dataJSON.getString("title");
+                  JSONArray itemArray = result.getJSONArray("Items");
+                  int itemNum = itemArray.length();
+                  if(itemNum != 0) {
+                    String[] title = new String[itemNum];
+                    String[] author = new String[itemNum];
+                    String[] publisher = new String[itemNum];
+                    String[] imageUrl = new String[itemNum];
+                    for(int i=0; i<itemNum; i++) {
+                      JSONObject jsonObject = itemArray.getJSONObject(i);
+                      JSONObject jsonObjectItem = jsonObject.getJSONObject("Item");
+                      title[i] = jsonObjectItem.getString("title");
+                      author[i] = jsonObjectItem.getString("author");
+                      publisher[i] = jsonObjectItem.getString("publisherName");
+                      imageUrl[i] = jsonObjectItem.getString("mediumImageUrl");
+                    }
+
+                    // ****もっと賢い書き方があるか
+                    titleArray = title;
+                    authorArray = author;
+                    publisherArray = publisher;
+                    imageUrlArray = imageUrl;
+
+                    // 書籍選択画面にインテント
+                    Intent newIntent = new Intent(getApplicationContext(), BookSearchResultList.class);
+                    newIntent.putExtra("title", titleArray);
+                    newIntent.putExtra("author", authorArray);
+                    newIntent.putExtra("publisher", publisherArray);
+                    newIntent.putExtra("imagel", imageUrlArray);
+                    startActivityForResult(newIntent, REQUEST_BOOKLIST);
+                  } else {
+                    // 一件もヒットしなかった場合はメッセージを表示
+                    Toast.makeText(PostActivity.this, "書籍が見つかりませんでした。", Toast.LENGTH_LONG).show();
+                  }
                 } catch (JSONException e) {
                   e.printStackTrace();
                 }
@@ -123,7 +156,6 @@ public class PostActivity extends Activity {
             }
           );
           task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-          */
       }
 		});
 
@@ -158,7 +190,11 @@ public class PostActivity extends Activity {
 		submitButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        new RemoteDataTask().execute();
+        if(!selectedTitle.equals("") && !priceEditText.getText().toString().equals("")) {   // 入力必須項目のチェック
+          new RemoteDataTask().execute();
+        } else {
+          Toast.makeText(PostActivity.this, "入力必須項目を埋めてください。", Toast.LENGTH_LONG).show();
+        }
       }
 		});
 
@@ -181,6 +217,9 @@ public class PostActivity extends Activity {
 
     // テキストビューのViewを取得
     univTextView = (TextView)findViewById(R.id.textview_university);
+    titleTextView = (TextView)findViewById(R.id.textview_selected_title);
+    authorTextView = (TextView)findViewById(R.id.textview_selected_author);
+    publisherTextView = (TextView)findViewById(R.id.textview_selected_publisher);
 
     // エディットテキストのViewを取得
     searchEditText = (EditText)findViewById(R.id.edittext_search_post);
@@ -194,31 +233,34 @@ public class PostActivity extends Activity {
 	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
     // Override this method to do custom remote calls
     protected Void doInBackground(Void... params) {
+      Book book = new Book();
 
-      // EditTextから情報を取得する
-      String detail = detailEditText.getText().toString();
+      // 入力必須でない項目は個別に対応
+      if(!detailEditText.getText().toString().equals("")) {
+        String detail = detailEditText.getText().toString();
+        book.setBody(detail);
+      }
+      if(img != null) {
+        // Parseに保存するために画像をbyte[]に変換する
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        img.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        byte[] byteData = bos.toByteArray();
+        ParseFile photoFile = new ParseFile("meal_photo.jpg", byteData);
+        book.setPicture(photoFile);
+      }
+
+      // 入力必須項目は気にせずset
       int price = Integer.parseInt(priceEditText.getText().toString());
       int year = yearPicker.getValue();
-
-      // Parseに保存するために画像をbyte[]に変換する
-      ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      img.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-      byte[] byteData = bos.toByteArray();
-      ParseFile photoFile = new ParseFile("meal_photo.jpg", byteData);
-
-      // Parseに保存する
-      user = ParseUser.getCurrentUser();
-      Book book = new Book();
-      book.setUser(user);
-      book.setUniversity("岐阜大学");
-      book.setDepertment("工学部");
-      book.setTitle("線形代数");
-      book.setAuthor("A");
-      book.setBody(detail);
-      book.setBookThumb(photoFile);
-      book.setPicture(photoFile);
+      book.setUniversity("岐阜大学");   // 要修正
+      book.setDepertment("工学部");  // 要修正
+      book.setTitle(selectedTitle);
+      book.setAuthor(selectedAuthor);
+      book.setPublisher(selectedPublisher);
       book.setPrice(price);
       book.setYear(year);
+      user = ParseUser.getCurrentUser();
+      book.setUser(user);
 
       try {
         book.save();
@@ -254,17 +296,25 @@ public class PostActivity extends Activity {
     if(resultCode == RESULT_OK) {
        ImageView imgView = (ImageView)findViewById(R.id.image_selected);
        if(requestCode == REQUEST_GALLERY) {  // ギャラリーで画像が選択された
-       try {
-         InputStream in = getContentResolver().openInputStream(data.getData());
-         img = BitmapFactory.decodeStream(in);
-         in.close();
-         imgView.setImageBitmap(img);
-       } catch(Exception e) {
+         try {
+           InputStream in = getContentResolver().openInputStream(data.getData());
+           img = BitmapFactory.decodeStream(in);
+           in.close();
+           imgView.setImageBitmap(img);
+         } catch(Exception e) {
 
-       }
-     } else if(requestCode == REQUEST_CAMERA) {  // カメラで写真が撮影された
+         }
+       } else if(requestCode == REQUEST_CAMERA) {  // カメラで写真が撮影された
          img = (Bitmap)data.getExtras().get("data");  // カメラで撮影された写真を取得
          imgView.setImageBitmap(img);
+       } else if(requestCode == REQUEST_BOOKLIST) {   // 書籍検索画面で書籍が選択された
+         selectedItemId = data.getIntExtra("selectedItemId", 0);  // 番号を取得
+         selectedTitle = titleArray[selectedItemId];
+         selectedAuthor = authorArray[selectedItemId];
+         selectedPublisher = publisherArray[selectedItemId];
+         titleTextView.setText(selectedTitle);   // 書籍の情報を表示
+         authorTextView.setText("著者：" + selectedAuthor);
+         publisherTextView.setText("出版社：" + selectedPublisher);
        }
     }
   }
