@@ -78,6 +78,23 @@
 	    </LinearLayout>
 
 	    <TextView
+	        android:id="@+id/textview_selected_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="12sp" />
+
+	    <TextView
+            android:id="@+id/textview_selected_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+	    <TextView
+            android:id="@+id/textview_selected_publisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp" />
+
+	    <TextView
 	            style="@style/Section"
 	            android:text="書籍の状態や出品希望価格など" />
 
@@ -131,7 +148,7 @@
 	        <TextView
 	            android:layout_width="100dp"
 	            android:layout_height="wrap_content"
-	            android:text="出品希望価格" />
+	            android:text="出品希望価格*" />
 
 	        <EditText
 	            android:id="@+id/edittext_price_post"
@@ -152,7 +169,7 @@
 	        <TextView
 	            android:layout_width="50dp"
 	            android:layout_height="wrap_content"
-	            android:text="年度" />
+	            android:text="年度*" />
 
 	        <NumberPicker
 	            android:id="@+id/numpicker_year_post"

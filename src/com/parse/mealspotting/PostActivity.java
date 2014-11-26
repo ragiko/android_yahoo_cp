@@ -49,7 +49,7 @@ public class PostActivity extends Activity {
 	private Spinner changeDepSpinner;
 	private Button searchButton, barcodeButton;
   private Button cameraButton, galleryButton, submitButton;
-  private TextView univTextView;
+  private TextView univTextView, titleTextView, authorTextView, publisherTextView;
   private EditText searchEditText, detailEditText, priceEditText;
   private NumberPicker yearPicker;
   private Dialog progressDialog;
@@ -59,6 +59,11 @@ public class PostActivity extends Activity {
 
   private Bitmap img;
   private ParseUser user;
+  private int selectedItemId;   // 書籍検索画面でどのアイテムが選択されたか
+  private String[] titleArray;
+  private String[] authorArray;
+  private String[] publisherArray;
+  private String[] imageUrlArray;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -102,18 +107,25 @@ public class PostActivity extends Activity {
                   JSONArray itemArray = result.getJSONArray("Items");
                   int itemNum = itemArray.length();
                   if(itemNum != 0) {
-                    String[] titleArray = new String[itemNum];
-                    String[] authorArray = new String[itemNum];
-                    String[] publisherArray = new String[itemNum];
-                    String[] imageUrlArray = new String[itemNum];
+                    String[] title = new String[itemNum];
+                    String[] author = new String[itemNum];
+                    String[] publisher = new String[itemNum];
+                    String[] imageUrl = new String[itemNum];
                     for(int i=0; i<itemNum; i++) {
                       JSONObject jsonObject = itemArray.getJSONObject(i);
                       JSONObject jsonObjectItem = jsonObject.getJSONObject("Item");
-                      titleArray[i] = jsonObjectItem.getString("title");
-                      authorArray[i] = jsonObjectItem.getString("author");
-                      publisherArray[i] = jsonObjectItem.getString("publisherName");
-                      imageUrlArray[i] = jsonObjectItem.getString("mediumImageUrl");
+                      title[i] = jsonObjectItem.getString("title");
+                      author[i] = jsonObjectItem.getString("author");
+                      publisher[i] = jsonObjectItem.getString("publisherName");
+                      imageUrl[i] = jsonObjectItem.getString("mediumImageUrl");
                     }
+
+                    // ****もっと賢い書き方があるか
+                    titleArray = title;
+                    authorArray = author;
+                    publisherArray = publisher;
+                    imageUrlArray = imageUrl;
+
                     // 書籍選択画面にインテント
                     Intent newIntent = new Intent(getApplicationContext(), BookSearchResultList.class);
                     newIntent.putExtra("title", titleArray);
@@ -198,6 +210,9 @@ public class PostActivity extends Activity {
 
     // テキストビューのViewを取得
     univTextView = (TextView)findViewById(R.id.textview_university);
+    titleTextView = (TextView)findViewById(R.id.textview_selected_title);
+    authorTextView = (TextView)findViewById(R.id.textview_selected_author);
+    publisherTextView = (TextView)findViewById(R.id.textview_selected_publisher);
 
     // エディットテキストのViewを取得
     searchEditText = (EditText)findViewById(R.id.edittext_search_post);
@@ -229,8 +244,9 @@ public class PostActivity extends Activity {
       book.setUser(user);
       book.setUniversity("岐阜大学");
       book.setDepertment("工学部");
-      book.setTitle("線形代数");
-      book.setAuthor("A");
+      book.setTitle(titleArray[selectedItemId]);
+      book.setAuthor(authorArray[selectedItemId]);
+      book.setPublisher(publisherArray[selectedItemId]);
       book.setBody(detail);
       book.setBookThumb(photoFile);
       book.setPicture(photoFile);
@@ -282,8 +298,11 @@ public class PostActivity extends Activity {
        } else if(requestCode == REQUEST_CAMERA) {  // カメラで写真が撮影された
          img = (Bitmap)data.getExtras().get("data");  // カメラで撮影された写真を取得
          imgView.setImageBitmap(img);
-       } else if(requestCode == REQUEST_BOOKLIST) {
-         int selectedItemId = data.getIntExtra("selectedItemId", 0);
+       } else if(requestCode == REQUEST_BOOKLIST) {   // 書籍検索画面で書籍が選択された
+         selectedItemId = data.getIntExtra("selectedItemId", 0);  // 番号を取得
+         titleTextView.setText(titleArray[selectedItemId]);   // 書籍の情報を表示
+         authorTextView.setText("著者" + authorArray[selectedItemId]);
+         publisherTextView.setText("出版社" + publisherArray[selectedItemId]);
        }
     }
   }
