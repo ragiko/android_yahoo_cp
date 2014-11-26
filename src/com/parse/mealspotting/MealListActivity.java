@@ -5,6 +5,7 @@ import java.util.Arrays;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 
 public class MealListActivity extends ListActivity {
 
@@ -26,6 +28,17 @@ public class MealListActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getListView().setClickable(false);
+		
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if (currentUser != null) {
+			// do stuff with the user
+			String objectId = currentUser.getObjectId();
+			Log.d("login Success", objectId);
+		  // do stuff with the user
+		} else {
+		  // show the signup or login screen
+			Log.d("login Error", "Fuck");
+		}
 
 		textAdapter = new BookAdapter(this,
 				new ParseQueryAdapter.QueryFactory<Book>() {
@@ -63,7 +76,12 @@ public class MealListActivity extends ListActivity {
 		}
 
 		case R.id.action_new: {
-			newMeal();
+			postBook();
+			break;
+		}
+		
+		case R.id.action_deal: {
+			dealBook();
 			break;
 		}
 
@@ -71,14 +89,19 @@ public class MealListActivity extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void newMeal() {
-		Intent i = new Intent(this, NewMealActivity.class);
-		startActivityForResult(i, 0);
-	}
-
 	private void searchMeal() {
 		Intent i = new Intent(this, SearchActivity.class);
 		startActivityForResult(i, SEARCH_REQUEST_CODE);
+	}
+	
+	private void postBook() {
+		Intent i = new Intent(this, PostActivity.class);
+		startActivityForResult(i, 0);
+	}
+	
+	private void dealBook() {
+		Intent i = new Intent(this, DealListActivity.class);
+		startActivityForResult(i, 0);
 	}
 
 	@Override

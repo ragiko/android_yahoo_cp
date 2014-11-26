@@ -1,9 +1,10 @@
 package com.parse.mealspotting;
 
 import android.app.Application;
+import android.net.ParseException;
 
+import com.parse.LogInCallback;
 import com.parse.Parse;
-import com.parse.ParseACL;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -12,47 +13,42 @@ public class MealSpottingApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-
 		/*
 		 * In this tutorial, we'll subclass ParseObject for convenience to
 		 * create and modify Meal objects
 		 */
 		ParseObject.registerSubclass(Meal.class);
 		ParseObject.registerSubclass(Book.class);
+		ParseObject.registerSubclass(Deal.class);
 
 		/*
 		 * Fill in this section with your Parse credentials
 		 */
 		Parse.initialize(this, "b5KZBDCrwsDrRyYhGitOz9sXNOhzIqbBchdUBWWc", "RPiFbq86gt2PmGwYqtGIiwct2behPH1IAPzcBiOa");
 
-		/*
-		 * This app lets an anonymous user create and save photos of meals
-		 * they've eaten. An anonymous user is a user that can be created
-		 * without a username and password but still has all of the same
-		 * capabilities as any other ParseUser.
-		 *
-		 * After logging out, an anonymous user is abandoned, and its data is no
-		 * longer accessible. In your own app, you can convert anonymous users
-		 * to regular users so that data persists.
-		 *
-		 * Learn more about the ParseUser class:
-		 * https://www.parse.com/docs/android_guide#users
-		 */
-		ParseUser.enableAutomaticUser();
+		
+		ParseUser.logInInBackground("tag", "hy6ju7ki",
+				new LogInCallback() {
+					@Override
+					public void done(ParseUser user, com.parse.ParseException e) {
+						// TODO Auto-generated method stub
+						if (user != null) {
+							// Hooray! The user is logged in.
+						} else {
+							// Signup failed. Look at the ParseException to see
+							// what happened.
+						}
+					}
+			});
+		
 
-		/*
-		 * For more information on app security and Parse ACL:
-		 * https://www.parse.com/docs/android_guide#security-recommendations
-		 */
-		ParseACL defaultACL = new ParseACL();
-
-		/*
-		 * If you would like all objects to be private by default, remove this
-		 * line
-		 */
-		//defaultACL.setPublicReadAccess(true);
-
-		ParseACL.setDefaultACL(defaultACL, true);
+//	    ParseACL defaultACL = new ParseACL();
+//	    ParseACL.setDefaultACL(defaultACL, true);
+//	    
+//	    ParseUser.enableAutomaticUser();
+//	    ParseUser.getCurrentUser().increment("RunCount");
+//	    ParseUser.getCurrentUser().saveInBackground();
+		
 	}
 
 }

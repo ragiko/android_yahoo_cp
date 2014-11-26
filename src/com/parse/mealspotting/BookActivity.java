@@ -20,7 +20,7 @@ public class BookActivity extends Activity {
 		// Override this method to do custom remote calls
 		protected Void doInBackground(Void... params) {
 			// Gets the current list of todos in sorted order
-			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Text");
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Textbook");
 			query.whereEqualTo("objectId", bookId);
 
 			try {
