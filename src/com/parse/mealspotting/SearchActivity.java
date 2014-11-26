@@ -20,7 +20,7 @@ public class SearchActivity extends Activity {
 		
 		// 学部
 		ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter
-				.createFromResource(this, R.array.departments,
+				.createFromResource(this, DepertmentOfUniversity.list.get("香川大学"),
 						android.R.layout.simple_spinner_dropdown_item);
 		departments = (Spinner) findViewById(R.id.department_spinner);
 		departments.setAdapter(spinnerAdapter);

@@ -66,7 +66,8 @@ public class ParseChatActivity extends Activity {
 		// http://mycode.snow69it.net/390/
 		// あなたのアプリケーションはparseサーバーに通知の準備が出来たことを知らせます
 		// チャンネル = グループ名
-		PushService.subscribe(this, dealId, ParseChatActivity.class);
+		// channelの参考: https://www.parse.com/questions/for-push-unique-channel-name-per-user-not-allowed
+		PushService.subscribe(this, "room_1" + dealId, ParseChatActivity.class);
 		PushService.setDefaultPushCallback(this, ParseChatActivity.class);
 		
 		receiveMessage();
