@@ -50,7 +50,7 @@
             android:textSize="27sp" />
          
          <Button
-             android:id="@+id/search_button"
+             android:id="@+id/contact_button"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:text="投稿者にSMSで連絡" />

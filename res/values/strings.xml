@@ -684,13 +684,9 @@
         <item>共同獣医学部</item>
         <item>水産学部</item>
     </string-array>
-    
     <string-array name="years">
         <item>2014</item>
         <item>2013</item>
         <item></item>
     </string-array>
-    
-    
-
 </resources>
