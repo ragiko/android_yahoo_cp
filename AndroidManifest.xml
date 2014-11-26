@@ -59,6 +59,10 @@
                 android:value="android.app.Activity" />
         </activity>
         <activity
+            android:name=".BookSearchResultList"
+            android:label="書籍を選んでください。" >
+        </activity>
+        <activity
             android:name=".ParseChatActivity"
             android:label="chat" >
         </activity>

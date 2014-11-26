@@ -43,6 +43,7 @@ public class PostActivity extends Activity {
 	//インテントが返って来た時の判別コード
 	private static final int REQUEST_GALLERY = 0;
 	private static final int REQUEST_CAMERA = 1;
+	private static final int REQUEST_BOOKLIST = 2;
 
 	// View
 	private Spinner changeDepSpinner;
@@ -99,14 +100,30 @@ public class PostActivity extends Activity {
                 try {
                   JSONObject result = new JSONObject(response);
                   JSONArray itemArray = result.getJSONArray("Items");
-                  for(int i=0; i<itemArray.length(); i++) {
-                    JSONObject jsonObject = itemArray.getJSONObject(i);
-                    JSONObject jsonObjectItem = jsonObject.getJSONObject("Item");
-                    String title = jsonObjectItem.getString("title");
-                    String author = jsonObjectItem.getString("author");
-                    String publisher = jsonObjectItem.getString("publisherName");
-                    String imageUrl = jsonObjectItem.getString("mediumImageUrl");
-                    Log.d("OK", title);
+                  int itemNum = itemArray.length();
+                  if(itemNum != 0) {
+                    String[] titleArray = new String[itemNum];
+                    String[] authorArray = new String[itemNum];
+                    String[] publisherArray = new String[itemNum];
+                    String[] imageUrlArray = new String[itemNum];
+                    for(int i=0; i<itemNum; i++) {
+                      JSONObject jsonObject = itemArray.getJSONObject(i);
+                      JSONObject jsonObjectItem = jsonObject.getJSONObject("Item");
+                      titleArray[i] = jsonObjectItem.getString("title");
+                      authorArray[i] = jsonObjectItem.getString("author");
+                      publisherArray[i] = jsonObjectItem.getString("publisherName");
+                      imageUrlArray[i] = jsonObjectItem.getString("mediumImageUrl");
+                    }
+                    // 書籍選択画面にインテント
+                    Intent newIntent = new Intent(getApplicationContext(), BookSearchResultList.class);
+                    newIntent.putExtra("title", titleArray);
+                    newIntent.putExtra("author", authorArray);
+                    newIntent.putExtra("publisher", publisherArray);
+                    newIntent.putExtra("imagel", imageUrlArray);
+                    startActivityForResult(newIntent, REQUEST_BOOKLIST);
+                  } else {
+                    // 一件もヒットしなかった場合はメッセージを表示
+                    Toast.makeText(PostActivity.this, "書籍が見つかりませんでした。", Toast.LENGTH_LONG).show();
                   }
                 } catch (JSONException e) {
                   e.printStackTrace();
@@ -254,17 +271,19 @@ public class PostActivity extends Activity {
     if(resultCode == RESULT_OK) {
        ImageView imgView = (ImageView)findViewById(R.id.image_selected);
        if(requestCode == REQUEST_GALLERY) {  // ギャラリーで画像が選択された
-       try {
-         InputStream in = getContentResolver().openInputStream(data.getData());
-         img = BitmapFactory.decodeStream(in);
-         in.close();
-         imgView.setImageBitmap(img);
-       } catch(Exception e) {
+         try {
+           InputStream in = getContentResolver().openInputStream(data.getData());
+           img = BitmapFactory.decodeStream(in);
+           in.close();
+           imgView.setImageBitmap(img);
+         } catch(Exception e) {
 
-       }
-     } else if(requestCode == REQUEST_CAMERA) {  // カメラで写真が撮影された
+         }
+       } else if(requestCode == REQUEST_CAMERA) {  // カメラで写真が撮影された
          img = (Bitmap)data.getExtras().get("data");  // カメラで撮影された写真を取得
          imgView.setImageBitmap(img);
+       } else if(requestCode == REQUEST_BOOKLIST) {
+         int selectedItemId = data.getIntExtra("selectedItemId", 0);
        }
     }
   }
