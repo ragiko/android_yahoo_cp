@@ -37,6 +37,7 @@ public class ParseChatActivity extends Activity {
 	private static final int MAX_CHAT_MESSAGES_TO_SHOW = 5;
 
 	private static String username;
+	private static String fromUserId;
 	private static String dealId;
 
 	private EditText txtMessage;
@@ -130,8 +131,8 @@ public class ParseChatActivity extends Activity {
 			object.put("action", "MyAction");
 			
 			ParseQuery query = ParseInstallation.getQuery();
-			query.whereEqualTo("dealId", dealId);
 			query.whereNotEqualTo(USER_NAME_KEY, username);
+			query.whereEqualTo("channels", "room_1" + dealId);
 			
 			ParsePush pushNotification = new ParsePush();
 			pushNotification.setQuery(query);
