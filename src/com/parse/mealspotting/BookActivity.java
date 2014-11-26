@@ -58,6 +58,7 @@ public class BookActivity extends Activity  implements OnClickListener {
 			// データの送信時に使用する
 			toUser = book.getParseUser("user");
 			// TODO: 送信できるタイミングでボタンをイネーブル
+			contactButton.setEnabled(true);
 		}
 	}
 	
@@ -73,6 +74,7 @@ public class BookActivity extends Activity  implements OnClickListener {
 		
 		contactButton = (Button) findViewById(R.id.contact_button);
 		contactButton.setOnClickListener(this);
+		contactButton.setEnabled(false);
 	}
 	
 	@Override
