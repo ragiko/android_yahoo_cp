@@ -23,4 +23,10 @@
         android:showAsAction="ifRoom"
         android:title="">
     </item>
+    <item
+        android:id="@+id/action_deal"
+        android:icon="@drawable/ic_action_deal"
+        android:showAsAction="ifRoom"
+        android:title="">
+    </item>
 </menu>

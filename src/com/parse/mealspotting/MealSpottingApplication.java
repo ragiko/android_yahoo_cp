@@ -19,7 +19,7 @@ public class MealSpottingApplication extends Application {
 		 */
 		ParseObject.registerSubclass(Meal.class);
 		ParseObject.registerSubclass(Book.class);
-		ParseObject.registerSubclass(Message.class);
+		ParseObject.registerSubclass(Deal.class);
 
 		/*
 		 * Fill in this section with your Parse credentials
