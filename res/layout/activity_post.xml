@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
@@ -123,7 +124,10 @@
 	    <ImageView
 	        android:id="@+id/image_selected"
 	        android:layout_width="150dp"
-	        android:layout_height="150dp" />
+	        android:layout_height="150dp"
+	        android:background="@drawable/imageview_frame"
+	        android:scaleType="center"
+	        android:src="@drawable/ic_blankimage" />
 
 	    <LinearLayout style="@style/PostItemLayout" >
 
@@ -161,20 +165,6 @@
 	            android:layout_width="20dp"
 	            android:layout_height="wrap_content"
 	            android:text="円" />
-
-	    </LinearLayout>
-
-	    <LinearLayout style="@style/PostBottomItemLayout" >
-
-	        <TextView
-	            android:layout_width="50dp"
-	            android:layout_height="wrap_content"
-	            android:text="年度*" />
-
-	        <NumberPicker
-	            android:id="@+id/numpicker_year_post"
-	            android:layout_width="100dp"
-	            android:layout_height="wrap_content" />
 
 	    </LinearLayout>
 

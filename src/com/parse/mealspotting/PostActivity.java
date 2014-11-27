@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +50,6 @@ public class PostActivity extends Activity {
   private Button cameraButton, galleryButton, submitButton;
   private TextView univTextView, titleTextView, authorTextView, publisherTextView;
   private EditText searchEditText, detailEditText, priceEditText;
-  private NumberPicker yearPicker;
   private Dialog progressDialog;
 
   //日時・時刻を取得するためのインスタンス
@@ -197,12 +195,6 @@ public class PostActivity extends Activity {
         }
       }
 		});
-
-		// NumberPickerの設定
-		int presentYear = obj_cd.get(Calendar.YEAR);
-		int startYear = presentYear - 10;
-		yearPicker.setMaxValue(presentYear);
-		yearPicker.setMinValue(startYear);
 	}
 
 	// Viewの取得
@@ -225,9 +217,6 @@ public class PostActivity extends Activity {
     searchEditText = (EditText)findViewById(R.id.edittext_search_post);
     detailEditText = (EditText)findViewById(R.id.edittext_detail_post);
     priceEditText = (EditText)findViewById(R.id.edittext_price_post);
-
-    // ナンバーピッカーのViewを取得
-    yearPicker = (NumberPicker)findViewById(R.id.numpicker_year_post);
 	}
 
 	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
@@ -251,14 +240,12 @@ public class PostActivity extends Activity {
 
       // 入力必須項目は気にせずset
       int price = Integer.parseInt(priceEditText.getText().toString());
-      int year = yearPicker.getValue();
       book.setUniversity("岐阜大学");   // 要修正
       book.setDepertment("工学部");  // 要修正
       book.setTitle(selectedTitle);
       book.setAuthor(selectedAuthor);
       book.setPublisher(selectedPublisher);
       book.setPrice(price);
-      book.setYear(year);
       user = ParseUser.getCurrentUser();
       book.setUser(user);
 
