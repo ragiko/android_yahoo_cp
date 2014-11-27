@@ -62,7 +62,7 @@ public class ChooseUserActivity extends Activity {
 			}
 		});
 	}
-	
+
 	private void configureUserNameInParse(String userName) {
 		ParseInstallation installation = ParseInstallation.getCurrentInstallation();
 		installation.put(ParseChatActivity.USER_NAME_KEY, userName);

@@ -11,6 +11,7 @@
 
     <TextView
         android:id="@+id/text_title"
+        style="@style/itemListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -66,7 +67,7 @@
         android:paddingLeft="3dip"
         android:paddingRight="3dip" />
 
-    <!--   
+    <!--
     <TextView
         android:id="@+id/text_body"
         android:layout_width="wrap_content"

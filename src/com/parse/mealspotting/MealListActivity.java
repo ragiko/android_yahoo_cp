@@ -28,7 +28,7 @@ public class MealListActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getListView().setClickable(false);
-		
+
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if (currentUser != null) {
 			// do stuff with the user
@@ -68,29 +68,18 @@ public class MealListActivity extends ListActivity {
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
+	  int itemId = item.getItemId();
 
-		case R.id.action_search: {
+		if (itemId == R.id.action_search) {
 			searchMeal();
-			break;
-		}
-
-		case R.id.action_new: {
+		} else if (itemId == R.id.action_new) {
 			postBook();
-			break;
-		}
-		
-		case R.id.action_deal: {
+		} else if (itemId == R.id.action_deal) {
 			dealBook();
-			break;
-		}
-		
-		case R.id.action_profile: {
+		} else if (itemId == R.id.action_profile) {
 			profile();
-			break;
 		}
 
-		}
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -98,17 +87,17 @@ public class MealListActivity extends ListActivity {
 		Intent i = new Intent(this, SearchActivity.class);
 		startActivityForResult(i, SEARCH_REQUEST_CODE);
 	}
-	
+
 	private void postBook() {
 		Intent i = new Intent(this, PostActivity.class);
 		startActivityForResult(i, 0);
 	}
-	
+
 	private void dealBook() {
 		Intent i = new Intent(this, DealListActivity.class);
 		startActivityForResult(i, 0);
 	}
-	
+
 	private void profile() {
 		Intent i = new Intent(this, ProfileListActivity.class);
 		startActivityForResult(i, 0);

@@ -32,7 +32,7 @@
         <activity
             android:name=".MealListActivity"
             android:label="@string/title_activity_meal_list" >
-            
+
         </activity>
         <activity
             android:name=".NewMealActivity"
@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name=".SearchActivity"
-            android:label="search" >
+            android:label="出品されている教科書を検索" >
         </activity>
         <activity
             android:name=".BookActivity"
@@ -69,6 +69,10 @@
         <activity
             android:name=".ChooseUserActivity"
             android:label="ログイン" >
+        </activity>
+        <activity
+            android:name=".SplashActivity"
+            android:label="splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:orientation="vertical"
 	    android:padding="10dp" >
+
+	    <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="出品する教科書を登録します。" />
+	    <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="各項目を埋めて、「投稿する」ボタンをタップしてください。" />
+
+	    <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="* 印は必須項目です。"
+                android:layout_marginBottom="20dp" />
 
 	    <TextView
 	            style="@style/Section"
@@ -50,7 +66,12 @@
 	            style="@style/Section"
 	            android:text="書籍情報" />
 
-	    <LinearLayout style="@style/PostItemLayout" >
+	    <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="出品する書籍の情報を書名で検索して自動入力するか、テキストボックスに手動で入力してください。" />
+
+	    <LinearLayout style="@style/PostBottomItemLayout" >
 
 	        <EditText
 	            android:id="@+id/edittext_search_post"
@@ -60,39 +81,47 @@
 	            android:ems="10" />
 
 	        <Button
-	            android:id="@+id/button_search_post"
 	            style="@style/Button"
+	            android:id="@+id/button_search_post"
 	            android:layout_width="130dp"
 	            android:text="書名で検索" />
 
 	    </LinearLayout>
 
-	    <LinearLayout style="@style/PostBottomItemLayout" >
+	    <LinearLayout style="@style/PostItemLayout" >
+	        <TextView
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:text="タイトル *" />
+		    <EditText
+		        android:id="@+id/edittext_selected_title"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="18sp" />
+        </LinearLayout>
 
-	    <Button
-	        android:id="@+id/button_barcode_post"
-	        style="@style/Button"
-	        android:layout_width="200dp"
-	        android:text="バーコードから取得" />
+	    <LinearLayout style="@style/PostItemLayout" >
+	        <TextView
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="著者 *" />
+		    <EditText
+	            android:id="@+id/edittext_selected_author"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content" />
+        </LinearLayout>
 
-	    </LinearLayout>
-
-	    <TextView
-	        android:id="@+id/textview_selected_title"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="18sp" />
-
-	    <TextView
-            android:id="@+id/textview_selected_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-	    <TextView
-            android:id="@+id/textview_selected_publisher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp" />
+	    <LinearLayout style="@style/PostItemLayout" >
+	        <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="出版社 *" />
+		    <EditText
+	            android:id="@+id/edittext_selected_publisher"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="30dp" />
+        </LinearLayout>
 
 	    <TextView
 	            style="@style/Section"
@@ -123,7 +152,9 @@
 	    <ImageView
 	        android:id="@+id/image_selected"
 	        android:layout_width="150dp"
-	        android:layout_height="150dp" />
+	        android:layout_height="150dp"
+	        android:background="@drawable/imageview_frame"
+	        android:src="@drawable/ic_blankimage" />
 
 	    <LinearLayout style="@style/PostItemLayout" >
 
@@ -139,11 +170,12 @@
 	            android:layout_weight="1"
 	            android:ems="10"
 	            android:inputType="textMultiLine"
-	            android:lines="3" />
+	            android:lines="3"
+	            android:hint="商品の詳しい状態や、取引相手への要望など" />
 
 	    </LinearLayout>
 
-	    <LinearLayout style="@style/PostItemLayout" >
+	    <LinearLayout style="@style/PostBottomItemLayout" >
 
 	        <TextView
 	            android:layout_width="100dp"
@@ -155,7 +187,8 @@
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
-	            android:ems="10" />
+	            android:ems="10"
+	            android:hint="無料で譲る場合は0を入力" />
 
 	        <TextView
 	            android:layout_width="20dp"
@@ -164,24 +197,10 @@
 
 	    </LinearLayout>
 
-	    <LinearLayout style="@style/PostBottomItemLayout" >
-
-	        <TextView
-	            android:layout_width="50dp"
-	            android:layout_height="wrap_content"
-	            android:text="年度*" />
-
-	        <NumberPicker
-	            android:id="@+id/numpicker_year_post"
-	            android:layout_width="100dp"
-	            android:layout_height="wrap_content" />
-
-	    </LinearLayout>
-
 	    <Button
 	        android:id="@+id/button_submit_post"
 	        style="@style/Button"
-	        android:layout_width="120dp"
+	        android:layout_width="match_parent"
 	        android:text="投稿する" />
 
 	</LinearLayout>

@@ -2,39 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="10dp" >
 
     <EditText
         android:id="@+id/search_keyword"
         android:background="@drawable/edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="フリーワード"
-        android:inputType="textMultiLine" />
+        android:hint="書籍名や著者名などキーワードを入力"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:text="学部"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#800000" />
 
     <Spinner
         android:id="@+id/department_spinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:text="価格帯"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#800000" />
 
     <RadioGroup
         android:id="@+id/radioGroup1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" >
 
         <RadioButton
             android:id="@+id/radio0"
@@ -49,23 +55,26 @@
             android:layout_height="wrap_content"
             android:text="有料" />
     </RadioGroup>
-    
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:text="年度"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#800000" />
 
     <Spinner
         android:id="@+id/year_spinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:id="@+id/search_button"
-        android:layout_width="wrap_content"
+        style="@style/Button"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="検索" />
+        android:text="検索する" />
 
 </LinearLayout>
