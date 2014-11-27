@@ -7,18 +7,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
-        
+
         <TextView
             android:id="@+id/title"
+            style="@style/bookTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingTop="20dp"
-            android:text=""
-            android:textSize="27sp" />
-        
+            android:text="" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,15 +28,16 @@
             android:paddingTop="5dp"
             android:text="芥川龍之介"
             android:textSize="20sp" />
-        
+
          <ImageView
              android:id="@+id/imageView1"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:paddingLeft="40dp"
              android:src="@drawable/text1" />
-         
+
          <TextView
+            style="@style/bookTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="20dp"
@@ -45,27 +46,19 @@
             android:paddingTop="20dp"
             android:text="1,000円"
             android:gravity="right"
-            android:textStyle="bold"
-            android:textColor="#1abc9c"
-            android:textSize="27sp" />
-         
+            android:textStyle="bold" />
+
          <Button
              android:id="@+id/contact_button"
+             style="@style/Button"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:text="投稿者にSMSで連絡" />
-      
+             android:text="投稿者にSMSで連絡"
+             android:layout_marginBottom="20dp" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1abc9c"
-            android:paddingBottom="5dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="5dp"
-            android:text="作品情報"
-            android:textColor="#ecf0f1"
-            android:textSize="20sp" />
+            style="@style/bookSection"
+            android:text="作品情報" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -140,16 +133,8 @@
         </TableLayout>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1abc9c"
-            android:paddingBottom="5dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="5dp"
-            android:text="内容"
-            android:textColor="#ecf0f1"
-            android:textSize="20sp" />
+            style="@style/bookSection"
+            android:text="内容" />
 
         <TextView
             android:layout_width="match_parent"
