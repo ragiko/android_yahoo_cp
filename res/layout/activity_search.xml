@@ -4,17 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="test"
-        android:textSize="20sp" />
-
     <EditText
         android:id="@+id/search_keyword"
+        android:background="@drawable/edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="フリーワード"
         android:inputType="textMultiLine" />
 
     <TextView
