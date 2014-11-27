@@ -58,5 +58,19 @@
         android:layout_height="wrap_content"
         android:paddingLeft="3dip"
         android:paddingRight="3dip" />
+    
+    <TextView
+        android:id="@+id/deal_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip" />
+    
+    <TextView
+        android:id="@+id/deal_other_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip" />
  
 </LinearLayout>

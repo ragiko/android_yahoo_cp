@@ -3,40 +3,47 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <com.parse.ParseImageView
-        android:id="@+id/text_thumb"
+   <!--  <com.parse.ParseImageView
+        android:id="@+id/text_list_thumb"
         android:layout_height="100dp"
         android:layout_width="100dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true" /> -->
+    
+    <ImageView
+        android:id="@+id/text_list_url_thumb"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/text1" />
 
     <TextView
-        android:id="@+id/text_title"
+        android:id="@+id/text_list_title"
         style="@style/itemListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/text_thumb"
+        android:layout_toRightOf="@id/text_list_url_thumb"
         android:text="text_title"
         android:paddingLeft="3dip"
         android:paddingRight="3dip" />
     
     <TextView
-        android:id="@+id/text_author"
+        android:id="@+id/text_list_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/text_thumb"
+        android:layout_toRightOf="@id/text_list_url_thumb"
         android:text="text_author"
         android:layout_marginTop="20dp"
         android:paddingLeft="3dip"
         android:paddingRight="3dip" />
     
     <TextView
-        android:id="@+id/text_publisher"
+        android:id="@+id/text_list_publisher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/text_thumb"
+        android:layout_toRightOf="@id/text_list_url_thumb"
         android:text="text_publisher"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="100dp"
@@ -44,11 +51,11 @@
         android:paddingRight="3dip" />
     
     <TextView
-        android:id="@+id/text_department"
+        android:id="@+id/text_list_department"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/text_thumb"
+        android:layout_toRightOf="@id/text_list_url_thumb"
         android:text="text_department"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="200dp"
@@ -56,11 +63,11 @@
         android:paddingRight="3dip" />
     
     <TextView
-        android:id="@+id/text_price"
+        android:id="@+id/text_list_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/text_thumb"
+        android:layout_toRightOf="@id/text_list_url_thumb"
         android:text="text_price"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="400dp"

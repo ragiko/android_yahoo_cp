@@ -1,5 +1,8 @@
 package com.parse.mealspotting;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +33,8 @@ public class DealAdapter extends ParseQueryAdapter<Deal>  {
 		final TextView fromTextView = (TextView) v.findViewById(R.id.deal_from_user);
 		final TextView toTextView = (TextView) v.findViewById(R.id.deal_to_user);
 		final TextView idTextView = (TextView) v.findViewById(R.id.deal_id);
+		final TextView statusTextView = (TextView) v.findViewById(R.id.deal_status);
+		final TextView otherUserIdTextView = (TextView) v.findViewById(R.id.deal_other_user);
 		
 		// TODO: もっとスマートなfetchを考える
 		
@@ -53,38 +58,73 @@ public class DealAdapter extends ParseQueryAdapter<Deal>  {
 			}
 		});
 		
-		// 購買者
-		ParseQuery<ParseUser> fromUserQuery = ParseUser.getQuery();
+//		//　買う側
+//		ParseQuery<ParseUser> fromUserQuery = ParseUser.getQuery();
+//		String fromUserId = deal.getFromUser().getObjectId();
+//		
+//		fromUserQuery.getInBackground(fromUserId, new GetCallback<ParseUser>() {
+//			@Override
+//			public void done(ParseUser user, com.parse.ParseException e) {
+//				// TODO Auto-generated method stub
+//				if (e == null) {
+//					// object will be your game score
+//					String s = user.getUsername();
+//					fromTextView.setText(user.getUsername());
+//				} else {
+//					// something went wrong
+//					Log.d("error", e.getMessage());
+//				}
+//
+//			}
+//		});
+//		
+//		// 売る側
+//		ParseQuery<ParseUser> toUserQuery = ParseUser.getQuery();
+//		String toUserId = deal.getToUser().getObjectId();
+//		
+//		toUserQuery.getInBackground(toUserId, new GetCallback<ParseUser>() {
+//			@Override
+//			public void done(ParseUser user, com.parse.ParseException e) {
+//				// TODO Auto-generated method stub
+//				if (e == null) {
+//					// object will be your game score
+//					String s = user.getUsername();
+//					toTextView.setText(user.getUsername());
+//				} else {
+//					// something went wrong
+//					Log.d("error", e.getMessage());
+//				}
+//
+//			}
+//		});
+		
+		// 自分とは違う情報の取得
+		// 買う側: fromUserId, 売る側: toUserId
 		String fromUserId = deal.getFromUser().getObjectId();
-		
-		fromUserQuery.getInBackground(fromUserId, new GetCallback<ParseUser>() {
-			@Override
-			public void done(ParseUser user, com.parse.ParseException e) {
-				// TODO Auto-generated method stub
-				if (e == null) {
-					// object will be your game score
-					String s = user.getUsername();
-					fromTextView.setText(user.getUsername());
-				} else {
-					// something went wrong
-					Log.d("error", e.getMessage());
-				}
-
-			}
-		});
-		
-		// 購買者
-		ParseQuery<ParseUser> toUserQuery = ParseUser.getQuery();
 		String toUserId = deal.getToUser().getObjectId();
+		final Map<String, String> statusAndUserId = new HashMap<String, String>();
 		
-		toUserQuery.getInBackground(toUserId, new GetCallback<ParseUser>() {
+		Log.d("to", ParseUser.getCurrentUser().getObjectId());
+		Log.d("from", fromUserId);
+		
+		if (ParseUser.getCurrentUser().getObjectId().equals(fromUserId)) { // 売る側
+			statusAndUserId.put("status", "sell");
+			statusAndUserId.put("user_id", toUserId);
+		} 
+		else { // 買う側
+			statusAndUserId.put("status", "buy");
+			statusAndUserId.put("user_id", fromUserId);
+		}
+		
+		ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+		userQuery.getInBackground(statusAndUserId.get("user_id"), new GetCallback<ParseUser>() {
 			@Override
 			public void done(ParseUser user, com.parse.ParseException e) {
 				// TODO Auto-generated method stub
 				if (e == null) {
 					// object will be your game score
-					String s = user.getUsername();
-					toTextView.setText(user.getUsername());
+					statusTextView.setText(statusAndUserId.get("status"));
+					otherUserIdTextView.setText(user.getUsername());
 				} else {
 					// something went wrong
 					Log.d("error", e.getMessage());
@@ -94,7 +134,7 @@ public class DealAdapter extends ParseQueryAdapter<Deal>  {
 		});
 		
 		// id
-		idTextView.setText(deal.getId());
+		// idTextView.setText(deal.getId());
 		
 		// 後で試す
 		// http://murayama.hatenablog.com/entry/2013/11/30/093741

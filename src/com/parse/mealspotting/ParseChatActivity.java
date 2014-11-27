@@ -147,7 +147,7 @@ public class ParseChatActivity extends Activity {
 	private void receiveMessage() {
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
 		query.whereEqualTo("dealId", dealId);
-		query.setLimit(MAX_CHAT_MESSAGES_TO_SHOW);
+		// query.setLimit(MAX_CHAT_MESSAGES_TO_SHOW);
 		query.orderByDescending("createdAt");
 		query.findInBackground(new FindCallback<ParseObject>() {
 			public void done(List<ParseObject> messages, ParseException e) {
@@ -157,9 +157,18 @@ public class ParseChatActivity extends Activity {
 					StringBuilder builder = new StringBuilder();
 					
 					for (int i = messages.size() - 1; i >= 0; i--) {
-						// 名前: メッセージのstringを作成
-						builder.append(messages.get(i).getString(USER_NAME_KEY)
-								+ ": " + messages.get(i).getString("message") + "\n");
+						if (messages.get(i).getString(USER_NAME_KEY).equals(username)) {
+							// 名前: メッセージのstringを作成 (自分の時は時下げしない)
+							builder.append(messages.get(i).getString(USER_NAME_KEY)
+									+ ": " + messages.get(i).getString("message") + "\n");
+						}
+						else {
+							// 名前: メッセージのstringを作成 (相手のときは時下げ)
+							String indent = "    ";
+							builder.append(indent + messages.get(i).getString(USER_NAME_KEY)
+									+ ": " + messages.get(i).getString("message") + "\n");
+						}
+						
 					}
 					addItemstoListView(builder.toString());
 				} else {

@@ -37,7 +37,7 @@
         android:textColor="#800000" />
 
     <RadioGroup
-        android:id="@+id/radioGroup1"
+        android:id="@+id/search_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp" >
@@ -47,28 +47,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="無料" />
+            android:text="0" />
 
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="有料" />
+            android:text="~500" />
+        
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500~" />
     </RadioGroup>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="年度"
-        android:textSize="20sp"
-        android:textColor="#800000" />
-
-    <Spinner
-        android:id="@+id/year_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp" />
 
     <Button
         android:id="@+id/search_button"

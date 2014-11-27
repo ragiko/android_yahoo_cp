@@ -19,6 +19,7 @@ public class MealListActivity extends ListActivity {
 
 	private BookAdapter textAdapter;
 	private int SEARCH_REQUEST_CODE = 1;
+	private int POST_REQUEST_CODE = 2;
 	private String departmentStr;
 
 	// Adapter for the Todos Parse Query
@@ -47,7 +48,8 @@ public class MealListActivity extends ListActivity {
 						// only top-rated meals.
 						ParseQuery query = new ParseQuery("Textbook");
 						query.whereContainedIn("department", Arrays.asList("工学部"));
-						// query.orderByDescending("rating");
+						query.whereNotEqualTo("user", ParseUser.getCurrentUser());
+						query.orderByAscending("createdAt");
 						return query;
 					}
 				});
@@ -90,7 +92,7 @@ public class MealListActivity extends ListActivity {
 
 	private void postBook() {
 		Intent i = new Intent(this, PostActivity.class);
-		startActivityForResult(i, 0);
+		startActivityForResult(i, POST_REQUEST_CODE);
 	}
 
 	private void dealBook() {
@@ -109,15 +111,18 @@ public class MealListActivity extends ListActivity {
 
 			Bundle bundle = data.getExtras();
 			departmentStr = bundle.getString("department");
+			final int moreGreaterPrice = bundle.getInt("more_greater_price");
+			final int moreLessPrice = bundle.getInt("more_less_price");
 
 			textAdapter = new BookAdapter(this,
 					new ParseQueryAdapter.QueryFactory<Book>() {
 						public ParseQuery<Book> create() {
-							// Here we can configure a ParseQuery to display
-							// only top-rated meals.
 							ParseQuery query = new ParseQuery("Textbook");
 							query.whereContainedIn("department", Arrays.asList(departmentStr));
-							// query.orderByDescending("rating");
+							query.whereNotEqualTo("user", ParseUser.getCurrentUser());
+							query.orderByAscending("createdAt");
+							query.whereLessThanOrEqualTo("price", moreLessPrice);
+							query.whereGreaterThanOrEqualTo("price", moreGreaterPrice);
 							return query;
 						}
 					});
@@ -136,5 +141,11 @@ public class MealListActivity extends ListActivity {
 		Intent intent = new Intent(this, BookActivity.class);
 		intent.putExtra("text_id", text.getId());
 		this.startActivity(intent);
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
 	}
 }
