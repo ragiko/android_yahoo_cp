@@ -46,8 +46,7 @@ public class PostActivity extends Activity {
 
 	// View
 	private Spinner changeDepSpinner;
-	private Button searchButton, barcodeButton;
-  private Button cameraButton, galleryButton, submitButton;
+	private Button searchButton, cameraButton, galleryButton, submitButton;
   private TextView univTextView, titleTextView, authorTextView, publisherTextView;
   private EditText searchEditText, detailEditText, priceEditText;
   private Dialog progressDialog;
@@ -68,8 +67,6 @@ public class PostActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		//meal = new Meal();
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_post);
@@ -157,14 +154,6 @@ public class PostActivity extends Activity {
       }
 		});
 
-		barcodeButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        // バーコードから書籍を検索
-
-      }
-    });
-
 		cameraButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -202,7 +191,6 @@ public class PostActivity extends Activity {
 	  // ボタンのViewを取得
     changeDepSpinner = (Spinner)findViewById(R.id.spinner_dep_post);
     searchButton = (Button)findViewById(R.id.button_search_post);
-    barcodeButton = (Button)findViewById(R.id.button_barcode_post);
     cameraButton = (Button)findViewById(R.id.button_camera_post);
     galleryButton = (Button)findViewById(R.id.button_gallery_post);
     submitButton = (Button)findViewById(R.id.button_submit_post);
@@ -274,6 +262,7 @@ public class PostActivity extends Activity {
 
       // プログレスダイアログを消す
       PostActivity.this.progressDialog.dismiss();
+      finish();
     }
   }
 

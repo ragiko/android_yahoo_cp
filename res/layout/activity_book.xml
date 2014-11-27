@@ -57,7 +57,7 @@
              android:layout_marginBottom="20dp" />
 
         <TextView
-            style="@style/bookSection"
+            style="@style/Section"
             android:text="作品情報" />
 
         <TableLayout
@@ -133,7 +133,7 @@
         </TableLayout>
 
         <TextView
-            style="@style/bookSection"
+            style="@style/Section"
             android:text="内容" />
 
         <TextView

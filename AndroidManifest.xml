@@ -49,7 +49,6 @@
         <activity
             android:name=".PostActivity"
             android:label="出品する教科書の登録" >
-
         </activity>
         <activity
             android:name=".BookSearchResultList"
