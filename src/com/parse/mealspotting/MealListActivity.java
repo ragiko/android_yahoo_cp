@@ -142,7 +142,7 @@ public class MealListActivity extends ListActivity {
 		intent.putExtra("text_id", text.getId());
 		this.startActivity(intent);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
