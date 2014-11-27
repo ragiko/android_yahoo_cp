@@ -19,7 +19,7 @@
         android:text="text_title"
         android:paddingLeft="3dip"
         android:paddingRight="3dip" />
-
+    
     <TextView
         android:id="@+id/text_author"
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
         android:layout_marginTop="20dp"
         android:paddingLeft="3dip"
         android:paddingRight="3dip" />
-
+    
     <TextView
         android:id="@+id/text_publisher"
         android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
         android:layout_marginLeft="100dp"
         android:paddingLeft="3dip"
         android:paddingRight="3dip" />
-
+    
     <TextView
         android:id="@+id/text_department"
         android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
         android:layout_marginLeft="200dp"
         android:paddingLeft="3dip"
         android:paddingRight="3dip" />
-
+    
     <TextView
         android:id="@+id/text_price"
         android:layout_width="wrap_content"
