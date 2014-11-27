@@ -33,6 +33,7 @@ public class ProfileListActivity extends ListActivity {
 					public ParseQuery<Book> create() {
 						ParseQuery query = new ParseQuery("Textbook");
 						query.whereEqualTo("user", ParseUser.getCurrentUser());
+						query.orderByDescending("createdAt");
 						return query;
 					}
 				});

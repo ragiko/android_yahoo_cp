@@ -2,6 +2,8 @@ package com.parse.mealspotting;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -29,6 +31,7 @@ public class BookActivity extends Activity  implements OnClickListener {
 	private String bookId;
 	private Button contactButton;
 	private ParseUser toUser;
+	private Dialog progressDialog;
 	
 	
 	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
@@ -49,6 +52,7 @@ public class BookActivity extends Activity  implements OnClickListener {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+			BookActivity.this.progressDialog = ProgressDialog.show(BookActivity.this, "", "お待ちください...", true);
 		}
 
 		@Override
@@ -106,6 +110,9 @@ public class BookActivity extends Activity  implements OnClickListener {
 						// object will be your game score
 						TextView userTextView = (TextView) findViewById(R.id.book_user_name);
 						userTextView.setText(user.getUsername());
+						
+						// プログレスダイアログを消す
+					    BookActivity.this.progressDialog.dismiss();
 					} else {
 						// something went wrong
 						Log.d("error", e.getMessage());
@@ -142,9 +149,9 @@ public class BookActivity extends Activity  implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		final CharSequence[] items = {
-				"購入を検討したいと考えています。購入可能かご相談させてください。",
-				"品物の状態をより詳しく知りたいです。教えていただけないでしょうか ",
-				"品物の受け渡し方法を相談したいです。ご相談できますでしょうか。"
+				"購入を検討したいと考えています。\n購入可能かご相談させてください。",
+				"品物の状態をより詳しく知りたいです。\n教えていただけないでしょうか ",
+				"品物の受け渡し方法を相談したいです。\nご相談できますでしょうか。"
 		};
 		
 		final boolean[] checkedItems = {
@@ -155,7 +162,7 @@ public class BookActivity extends Activity  implements OnClickListener {
 		
 		// チェックボックスのダイアログ
         new AlertDialog.Builder(BookActivity.this)
-		.setTitle("test") // メッセージを設定
+		.setTitle("投稿者にチャットで連絡") // メッセージを設定
 		.setMultiChoiceItems(items, checkedItems, 
 				new DialogInterface.OnMultiChoiceClickListener() {
 					
