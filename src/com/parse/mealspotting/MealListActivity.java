@@ -19,6 +19,7 @@ public class MealListActivity extends ListActivity {
 
 	private BookAdapter textAdapter;
 	private int SEARCH_REQUEST_CODE = 1;
+	private int POST_REQUEST_CODE = 2;
 	private String departmentStr;
 
 	// Adapter for the Todos Parse Query
@@ -91,7 +92,7 @@ public class MealListActivity extends ListActivity {
 
 	private void postBook() {
 		Intent i = new Intent(this, PostActivity.class);
-		startActivityForResult(i, 0);
+		startActivityForResult(i, POST_REQUEST_CODE);
 	}
 
 	private void dealBook() {
@@ -140,5 +141,11 @@ public class MealListActivity extends ListActivity {
 		Intent intent = new Intent(this, BookActivity.class);
 		intent.putExtra("text_id", text.getId());
 		this.startActivity(intent);
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
 	}
 }
