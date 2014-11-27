@@ -62,7 +62,6 @@
 
 	        <Button
 	            android:id="@+id/button_search_post"
-	            style="@style/Button"
 	            android:layout_width="130dp"
 	            android:text="書名で検索" />
 
