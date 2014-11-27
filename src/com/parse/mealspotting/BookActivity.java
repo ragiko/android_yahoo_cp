@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.GetDataCallback;
@@ -188,6 +189,9 @@ public class BookActivity extends Activity  implements OnClickListener {
 					}
 					
 					putContact(body);
+					
+					Toast.makeText(BookActivity.this, "送信完了しました", Toast.LENGTH_LONG).show();
+
 				}
 			})
 		// Negativeボタン、リスナーを設定
