@@ -69,16 +69,19 @@
 	    <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:text="出品する書籍の情報を書名で検索して自動入力するか、テキストボックスに手動で入力してください。" />
 
 	    <LinearLayout style="@style/PostBottomItemLayout" >
 
 	        <EditText
 	            android:id="@+id/edittext_search_post"
+	            style="@style/Textbox"
 	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
-	            android:ems="10" />
+	            android:ems="10"
+	            android:layout_marginRight="10dp"
+	            android:hint="書名を入力して検索" />
 
 	        <Button
 	            style="@style/Button"
@@ -90,36 +93,36 @@
 
 	    <LinearLayout style="@style/PostItemLayout" >
 	        <TextView
-	              android:layout_width="wrap_content"
+	              android:layout_width="100dp"
 	              android:layout_height="wrap_content"
 	              android:text="タイトル *" />
 		    <EditText
 		        android:id="@+id/edittext_selected_title"
+		        style="@style/Textbox"
 		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
 		        android:textSize="18sp" />
         </LinearLayout>
 
 	    <LinearLayout style="@style/PostItemLayout" >
 	        <TextView
-	             android:layout_width="wrap_content"
+	             android:layout_width="100dp"
 	             android:layout_height="wrap_content"
 	             android:text="著者 *" />
 		    <EditText
 	            android:id="@+id/edittext_selected_author"
-	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content" />
+	            style="@style/Textbox"
+	            android:layout_width="fill_parent" />
         </LinearLayout>
 
 	    <LinearLayout style="@style/PostItemLayout" >
 	        <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="出版社 *" />
+				android:layout_width="100dp"
+				android:layout_height="wrap_content"
+				android:text="出版社 *" />
 		    <EditText
 	            android:id="@+id/edittext_selected_publisher"
+	            style="@style/Textbox"
 	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
 	            android:layout_marginBottom="30dp" />
         </LinearLayout>
 
@@ -154,19 +157,21 @@
 	        android:layout_width="150dp"
 	        android:layout_height="150dp"
 	        android:background="@drawable/imageview_frame"
-	        android:src="@drawable/ic_blankimage" />
+	        android:src="@drawable/ic_blankimage"
+	        android:layout_marginBottom="50dp" />
 
 	    <LinearLayout style="@style/PostItemLayout" >
 
 	        <TextView
-	            android:layout_width="50dp"
+	            android:layout_width="100dp"
 	            android:layout_height="wrap_content"
 	            android:text="備考" />
 
 	        <EditText
 	            android:id="@+id/edittext_detail_post"
+	            style="@style/Textbox"
 	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
+	            android:layout_height="130dp"
 	            android:layout_weight="1"
 	            android:ems="10"
 	            android:inputType="textMultiLine"
@@ -184,11 +189,12 @@
 
 	        <EditText
 	            android:id="@+id/edittext_price_post"
+	            style="@style/Textbox"
 	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
 	            android:ems="10"
-	            android:hint="無料で譲る場合は0を入力" />
+	            android:hint="無料で譲る場合は0を入力"
+	            android:layout_marginRight="10dp" />
 
 	        <TextView
 	            android:layout_width="20dp"
