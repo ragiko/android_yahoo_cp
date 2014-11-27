@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,14 +28,14 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 public class BookActivity extends Activity  implements OnClickListener {
-	
+
 	private ParseObject book;
 	private String bookId;
 	private Button contactButton;
 	private ParseUser toUser;
 	private Dialog progressDialog;
-	
-	
+
+
 	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
 		// Override this method to do custom remote calls
 		protected Void doInBackground(Void... params) {
@@ -65,17 +66,17 @@ public class BookActivity extends Activity  implements OnClickListener {
 		protected void onPostExecute(Void result) {
 			TextView titleTextView = (TextView) findViewById(R.id.title);
 			titleTextView.setText(book.getString("title"));
-			
+
 			TextView authorTextView = (TextView) findViewById(R.id.book_author);
 			authorTextView.setText(book.getString("author"));
-			
+
 			TextView publisherTextView = (TextView) findViewById(R.id.book_publisher);
 			publisherTextView.setText(book.getString("publisher"));
-			
+
 			ImageLoader imageLoader = new ImageLoader(BookActivity.this);
 			ImageView imgflag = (ImageView) findViewById(R.id.book_thumb);
 	        imageLoader.DisplayImage(book.getString("text_thumb_url"), imgflag);
-			
+
 			ParseImageView bookImage = (ParseImageView) findViewById(R.id.book_picture);
 			ParseFile photoFile = book.getParseFile("text_thumb");
 			if (photoFile != null) {
@@ -87,22 +88,22 @@ public class BookActivity extends Activity  implements OnClickListener {
 					}
 				});
 			}
-			
+
 			TextView priceTextView = (TextView) findViewById(R.id.book_price);
 			priceTextView.setText(book.getString("price"));
-			
+
 			TextView universityTextView = (TextView) findViewById(R.id.book_university);
 			universityTextView.setText(book.getString("university"));
-			
+
 			TextView departmentTextView = (TextView) findViewById(R.id.book_department);
 			departmentTextView.setText(book.getString("department"));
-			
+
 			TextView bodyTextView = (TextView) findViewById(R.id.book_body);
 			bodyTextView.setText(book.getString("body"));
-			
+
 			ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
 			String userId = book.getParseUser("user").getObjectId();
-			
+
 			userQuery.getInBackground(userId, new GetCallback<ParseUser>() {
 				@Override
 				public void done(ParseUser user, com.parse.ParseException e) {
@@ -111,7 +112,7 @@ public class BookActivity extends Activity  implements OnClickListener {
 						// object will be your game score
 						TextView userTextView = (TextView) findViewById(R.id.book_user_name);
 						userTextView.setText(user.getUsername());
-						
+
 						// プログレスダイアログを消す
 					    BookActivity.this.progressDialog.dismiss();
 					} else {
@@ -121,31 +122,32 @@ public class BookActivity extends Activity  implements OnClickListener {
 
 				}
 			});
-			
+
 			// データの送信時に使用する
 			toUser = book.getParseUser("user");
 			// 送信できるタイミングでボタンをイネーブル
 			contactButton.setEnabled(true);
 		}
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_book);	
-		
-		
-		
+		setContentView(R.layout.activity_book);
+
+		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		new RemoteDataTask().execute();
-		
+
 		Intent i = getIntent();
 		bookId = i.getStringExtra("text_id");
-		
+
 		contactButton = (Button) findViewById(R.id.contact_button);
 		contactButton.setOnClickListener(this);
 		contactButton.setEnabled(false);
 	}
-	
+
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -154,26 +156,26 @@ public class BookActivity extends Activity  implements OnClickListener {
 				"品物の状態をより詳しく知りたいです。\n教えていただけないでしょうか ",
 				"品物の受け渡し方法を相談したいです。\nご相談できますでしょうか。"
 		};
-		
+
 		final boolean[] checkedItems = {
 				false,
 				false,
 				false
 		};
-		
+
 		// チェックボックスのダイアログ
         new AlertDialog.Builder(BookActivity.this)
 		.setTitle("投稿者にチャットで連絡") // メッセージを設定
-		.setMultiChoiceItems(items, checkedItems, 
+		.setMultiChoiceItems(items, checkedItems,
 				new DialogInterface.OnMultiChoiceClickListener() {
-					
+
 					@Override
 					public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 						// TODO Auto-generated method stub
 						// checkedItemsの内容を更新
 						checkedItems[which] = isChecked;
-						
-						
+
+
 					}
 				})
 		.setPositiveButton( // Positiveボタン、リスナーを設定
@@ -181,15 +183,15 @@ public class BookActivity extends Activity  implements OnClickListener {
 			new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					
+
 					String body = "";
-					
+
 					for (int i = 0; i < items.length; i++) {
 						body += checkedItems[i] ? items[i] + "\n" : "";
 					}
-					
+
 					putContact(body);
-					
+
 					Toast.makeText(BookActivity.this, "送信完了しました", Toast.LENGTH_LONG).show();
 
 				}
@@ -203,14 +205,14 @@ public class BookActivity extends Activity  implements OnClickListener {
 				}
 			}).show();
 	}
-	
+
 	// 取引を追加
 	// ユーザへのメッセージを追加
 	public void putContact(String body) {
 		if (toUser != null) {
-			
+
 			final String mBody = body;
-			
+
 			// Gets the current list of todos in sorted order
 			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
 					"Contact");
@@ -243,7 +245,7 @@ public class BookActivity extends Activity  implements OnClickListener {
 			}
 		}
 	}
-	
+
 	public void putMessage(String dealId, String body) {
 		// Make a new post
 		ParseObject message = new ParseObject("Message");
@@ -251,5 +253,15 @@ public class BookActivity extends Activity  implements OnClickListener {
 		message.put("message", body);
 		message.put("userName", ParseUser.getCurrentUser().getUsername());
 		message.saveInBackground();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	  // アプリアイコンをタップで戻る
+	  if (item.getItemId() == android.R.id.home) {
+          finish();
+          return true;
+	  }
+	  return super.onOptionsItemSelected(item);
 	}
 }

@@ -26,6 +26,10 @@ public class ProfileListActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		getListView().setClickable(false);
 
 		textAdapter = new BookAdapter(this,
@@ -47,17 +51,6 @@ public class ProfileListActivity extends ListActivity {
 		return true;
 	}
 
-	/*
-	 * Posting meals and refreshing the list will be controlled from the Action
-	 * Bar.
-	 */
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
@@ -68,9 +61,9 @@ public class ProfileListActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
-		
+
 		final Book book = mTexAdapter.getItem(position);
-		
+
 		// アイテムをタップでメニューを表示する
 		final String[] menu = new String[2];
 		menu[0] = ("教科書の詳細を見る");
@@ -100,6 +93,16 @@ public class ProfileListActivity extends ListActivity {
 					}
 				}).show();
 
-		
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	  // アプリアイコンをタップで戻る
+	  if (item.getItemId() == android.R.id.home) {
+          finish();
+          return true;
+	  }
+	  return super.onOptionsItemSelected(item);
 	}
 }

@@ -4,7 +4,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -22,7 +22,7 @@
         android:name="com.parse.mealspotting.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
     <uses-permission android:name="com.parse.mealspotting.permission.C2D_MESSAGE" />
-    
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
