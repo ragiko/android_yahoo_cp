@@ -108,7 +108,7 @@ public class Book extends ParseObject {
 	public void setUser(ParseUser user) {
 		put("user", user);
 	}
-	
+
 	public String getBookThumbUrl() {
 		return getString("text_thumb_url");
 	}

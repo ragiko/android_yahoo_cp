@@ -61,6 +61,7 @@ public class PostActivity extends Activity {
   private String[] authorArray;
   private String[] publisherArray;
   private String[] imageUrlArray;
+  private String imageUrl;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -237,6 +238,7 @@ public class PostActivity extends Activity {
       book.setAuthor(author);
       book.setPublisher(publisher);
       book.setPrice(price);
+      book.setBookThumbUrl(imageUrl);
       user = ParseUser.getCurrentUser();
       book.setUser(user);
 
@@ -291,6 +293,7 @@ public class PostActivity extends Activity {
          titleEditText.setText(titleArray[selectedItemId]);   // 書籍の情報を表示
          authorEditText.setText(authorArray[selectedItemId]);
          publisherEditText.setText(publisherArray[selectedItemId]);
+         imageUrl = imageUrlArray[selectedItemId];
        }
     }
   }
