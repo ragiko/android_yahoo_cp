@@ -11,6 +11,21 @@
 	    android:padding="10dp" >
 
 	    <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="出品する教科書を登録します。" />
+	    <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="各項目を埋めて、「投稿する」ボタンをタップしてください。" />
+
+	    <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="* 印は必須項目です。"
+                android:layout_marginBottom="20dp" />
+
+	    <TextView
 	            style="@style/Section"
 	            android:text="大学・学部情報"
 	            android:focusable="true"
@@ -51,6 +66,11 @@
 	            style="@style/Section"
 	            android:text="書籍情報" />
 
+	    <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="出品する書籍の情報を書名で検索して自動入力するか、テキストボックスに手動で入力してください。" />
+
 	    <LinearLayout style="@style/PostBottomItemLayout" >
 
 	        <EditText
@@ -68,22 +88,40 @@
 
 	    </LinearLayout>
 
-	    <TextView
-	        android:id="@+id/textview_selected_title"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="18sp" />
+	    <LinearLayout style="@style/PostItemLayout" >
+	        <TextView
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:text="タイトル *" />
+		    <EditText
+		        android:id="@+id/edittext_selected_title"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="18sp" />
+        </LinearLayout>
 
-	    <TextView
-            android:id="@+id/textview_selected_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+	    <LinearLayout style="@style/PostItemLayout" >
+	        <TextView
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="著者 *" />
+		    <EditText
+	            android:id="@+id/edittext_selected_author"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content" />
+        </LinearLayout>
 
-	    <TextView
-            android:id="@+id/textview_selected_publisher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp" />
+	    <LinearLayout style="@style/PostItemLayout" >
+	        <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="出版社 *" />
+		    <EditText
+	            android:id="@+id/edittext_selected_publisher"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="30dp" />
+        </LinearLayout>
 
 	    <TextView
 	            style="@style/Section"

@@ -47,8 +47,8 @@ public class PostActivity extends Activity {
 	// View
 	private Spinner changeDepSpinner;
 	private Button searchButton, cameraButton, galleryButton, submitButton;
-  private TextView univTextView, titleTextView, authorTextView, publisherTextView;
-  private EditText searchEditText, detailEditText, priceEditText;
+  private TextView univTextView;
+  private EditText searchEditText, detailEditText, priceEditText, titleEditText, authorEditText, publisherEditText;
   private Dialog progressDialog;
 
   //日時・時刻を取得するためのインスタンス
@@ -61,9 +61,6 @@ public class PostActivity extends Activity {
   private String[] authorArray;
   private String[] publisherArray;
   private String[] imageUrlArray;
-  private String selectedTitle = "";
-  private String selectedAuthor = "";
-  private String selectedPublisher = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -177,7 +174,10 @@ public class PostActivity extends Activity {
 		submitButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if(!selectedTitle.equals("") && !priceEditText.getText().toString().equals("")) {   // 入力必須項目のチェック
+        if (!priceEditText.getText().toString().equals("")
+            && !titleEditText.getText().toString().equals("")
+            && !authorEditText.getText().toString().equals("")
+            && !publisherEditText.getText().toString().equals("")) {   // 入力必須項目のチェック
           new RemoteDataTask().execute();
         } else {
           Toast.makeText(PostActivity.this, "入力必須項目を埋めてください。", Toast.LENGTH_LONG).show();
@@ -197,9 +197,9 @@ public class PostActivity extends Activity {
 
     // テキストビューのViewを取得
     univTextView = (TextView)findViewById(R.id.textview_university);
-    titleTextView = (TextView)findViewById(R.id.textview_selected_title);
-    authorTextView = (TextView)findViewById(R.id.textview_selected_author);
-    publisherTextView = (TextView)findViewById(R.id.textview_selected_publisher);
+    titleEditText = (EditText)findViewById(R.id.edittext_selected_title);
+    authorEditText = (EditText)findViewById(R.id.edittext_selected_author);
+    publisherEditText = (EditText)findViewById(R.id.edittext_selected_publisher);
 
     // エディットテキストのViewを取得
     searchEditText = (EditText)findViewById(R.id.edittext_search_post);
@@ -228,11 +228,14 @@ public class PostActivity extends Activity {
 
       // 入力必須項目は気にせずset
       int price = Integer.parseInt(priceEditText.getText().toString());
+      String title = titleEditText.getText().toString();
+      String author = authorEditText.getText().toString();
+      String publisher = publisherEditText.getText().toString();
       book.setUniversity("岐阜大学");   // 要修正
       book.setDepertment("工学部");  // 要修正
-      book.setTitle(selectedTitle);
-      book.setAuthor(selectedAuthor);
-      book.setPublisher(selectedPublisher);
+      book.setTitle(title);
+      book.setAuthor(author);
+      book.setPublisher(publisher);
       book.setPrice(price);
       user = ParseUser.getCurrentUser();
       book.setUser(user);
@@ -285,12 +288,9 @@ public class PostActivity extends Activity {
          imgView.setImageBitmap(img);
        } else if(requestCode == REQUEST_BOOKLIST) {   // 書籍検索画面で書籍が選択された
          selectedItemId = data.getIntExtra("selectedItemId", 0);  // 番号を取得
-         selectedTitle = titleArray[selectedItemId];
-         selectedAuthor = authorArray[selectedItemId];
-         selectedPublisher = publisherArray[selectedItemId];
-         titleTextView.setText(selectedTitle);   // 書籍の情報を表示
-         authorTextView.setText("著者：" + selectedAuthor);
-         publisherTextView.setText("出版社：" + selectedPublisher);
+         titleEditText.setText(titleArray[selectedItemId]);   // 書籍の情報を表示
+         authorEditText.setText(authorArray[selectedItemId]);
+         publisherEditText.setText(publisherArray[selectedItemId]);
        }
     }
   }
