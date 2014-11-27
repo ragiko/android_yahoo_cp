@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="ユーザを選択" />
+        android:text="ユーザを選択してログインしてください。" />
 
-    <Button        style="@style/Button" 
+    <Button        style="@style/Button"
         android:id="@+id/buttonLogin"
         android:layout_width="100dp"
         android:layout_height="wrap_content"

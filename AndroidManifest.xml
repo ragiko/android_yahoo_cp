@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name=".SearchActivity"
-            android:label="search" >
+            android:label="出品されている教科書を検索" >
         </activity>
         <activity
             android:name=".BookActivity"

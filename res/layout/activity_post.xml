@@ -170,7 +170,8 @@
 	            android:layout_weight="1"
 	            android:ems="10"
 	            android:inputType="textMultiLine"
-	            android:lines="3" />
+	            android:lines="3"
+	            android:hint="商品の詳しい状態や、取引相手への要望など" />
 
 	    </LinearLayout>
 
@@ -186,7 +187,8 @@
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_weight="1"
-	            android:ems="10" />
+	            android:ems="10"
+	            android:hint="無料で譲る場合は0を入力" />
 
 	        <TextView
 	            android:layout_width="20dp"
