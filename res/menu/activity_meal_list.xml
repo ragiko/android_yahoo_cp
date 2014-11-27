@@ -23,4 +23,10 @@
         android:showAsAction="ifRoom"
         android:title="">
     </item>
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/ic_action_profile"
+        android:showAsAction="ifRoom"
+        android:title="">
+    </item>
 </menu>

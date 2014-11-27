@@ -37,6 +37,7 @@ public class ParseChatActivity extends Activity {
 	private static final int MAX_CHAT_MESSAGES_TO_SHOW = 5;
 
 	private static String username;
+	private static String fromUserId;
 	private static String dealId;
 
 	private EditText txtMessage;
@@ -67,8 +68,8 @@ public class ParseChatActivity extends Activity {
 		// あなたのアプリケーションはparseサーバーに通知の準備が出来たことを知らせます
 		// チャンネル = グループ名
 		// channelの参考: https://www.parse.com/questions/for-push-unique-channel-name-per-user-not-allowed
-		PushService.subscribe(this, "room_1" + dealId, ParseChatActivity.class);
-		PushService.setDefaultPushCallback(this, ParseChatActivity.class);
+		PushService.subscribe(this, "room_1" + dealId, DealListActivity.class);
+		PushService.setDefaultPushCallback(this, DealListActivity.class);
 		
 		receiveMessage();
 		registerReceiver(pushReceiver, new IntentFilter("MyAction")); // IntentFilter("MyAction") 他の通知拒否
@@ -130,8 +131,8 @@ public class ParseChatActivity extends Activity {
 			object.put("action", "MyAction");
 			
 			ParseQuery query = ParseInstallation.getQuery();
-			query.whereEqualTo("dealId", dealId);
 			query.whereNotEqualTo(USER_NAME_KEY, username);
+			query.whereEqualTo("channels", "room_1" + dealId);
 			
 			ParsePush pushNotification = new ParsePush();
 			pushNotification.setQuery(query);
