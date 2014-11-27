@@ -110,6 +110,8 @@ public class MealListActivity extends ListActivity {
 
 			Bundle bundle = data.getExtras();
 			departmentStr = bundle.getString("department");
+			final int moreGreaterPrice = bundle.getInt("more_greater_price");
+			final int moreLessPrice = bundle.getInt("more_less_price");
 
 			textAdapter = new BookAdapter(this,
 					new ParseQueryAdapter.QueryFactory<Book>() {
@@ -118,6 +120,8 @@ public class MealListActivity extends ListActivity {
 							query.whereContainedIn("department", Arrays.asList(departmentStr));
 							query.whereNotEqualTo("user", ParseUser.getCurrentUser());
 							query.orderByAscending("createdAt");
+							query.whereLessThanOrEqualTo("price", moreLessPrice);
+							query.whereGreaterThanOrEqualTo("price", moreGreaterPrice);
 							return query;
 						}
 					});
