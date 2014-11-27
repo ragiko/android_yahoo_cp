@@ -10,9 +10,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -24,6 +29,7 @@ public class BookActivity extends Activity  implements OnClickListener {
 	private String bookId;
 	private Button contactButton;
 	private ParseUser toUser;
+	
 	
 	private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
 		// Override this method to do custom remote calls
@@ -53,11 +59,64 @@ public class BookActivity extends Activity  implements OnClickListener {
 		@Override
 		protected void onPostExecute(Void result) {
 			TextView titleTextView = (TextView) findViewById(R.id.title);
-			titleTextView.setText((String) book.get("title"));
+			titleTextView.setText(book.getString("title"));
+			
+			TextView authorTextView = (TextView) findViewById(R.id.book_author);
+			authorTextView.setText(book.getString("author"));
+			
+			TextView publisherTextView = (TextView) findViewById(R.id.book_publisher);
+			publisherTextView.setText(book.getString("publisher"));
+			
+			ImageLoader imageLoader = new ImageLoader(BookActivity.this);
+			ImageView imgflag = (ImageView) findViewById(R.id.book_thumb);
+	        imageLoader.DisplayImage(book.getString("text_thumb_url"), imgflag);
+			
+			ParseImageView bookImage = (ParseImageView) findViewById(R.id.book_picture);
+			ParseFile photoFile = book.getParseFile("text_thumb");
+			if (photoFile != null) {
+				bookImage.setParseFile(photoFile);
+				bookImage.loadInBackground(new GetDataCallback() {
+					@Override
+					public void done(byte[] data, ParseException e) {
+						// nothing to do
+					}
+				});
+			}
+			
+			TextView priceTextView = (TextView) findViewById(R.id.book_price);
+			priceTextView.setText(book.getString("price"));
+			
+			TextView universityTextView = (TextView) findViewById(R.id.book_university);
+			universityTextView.setText(book.getString("university"));
+			
+			TextView departmentTextView = (TextView) findViewById(R.id.book_department);
+			departmentTextView.setText(book.getString("department"));
+			
+			TextView bodyTextView = (TextView) findViewById(R.id.book_body);
+			bodyTextView.setText(book.getString("body"));
+			
+			ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+			String userId = book.getParseUser("user").getObjectId();
+			
+			userQuery.getInBackground(userId, new GetCallback<ParseUser>() {
+				@Override
+				public void done(ParseUser user, com.parse.ParseException e) {
+					// TODO Auto-generated method stub
+					if (e == null) {
+						// object will be your game score
+						TextView userTextView = (TextView) findViewById(R.id.book_user_name);
+						userTextView.setText(user.getUsername());
+					} else {
+						// something went wrong
+						Log.d("error", e.getMessage());
+					}
+
+				}
+			});
 			
 			// データの送信時に使用する
 			toUser = book.getParseUser("user");
-			// TODO: 送信できるタイミングでボタンをイネーブル
+			// 送信できるタイミングでボタンをイネーブル
 			contactButton.setEnabled(true);
 		}
 	}
@@ -66,6 +125,8 @@ public class BookActivity extends Activity  implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_book);	
+		
+		
 		
 		new RemoteDataTask().execute();
 		
