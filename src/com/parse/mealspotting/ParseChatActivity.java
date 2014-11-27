@@ -1,9 +1,11 @@
 package com.parse.mealspotting;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -37,7 +39,6 @@ public class ParseChatActivity extends Activity {
 	private static final int MAX_CHAT_MESSAGES_TO_SHOW = 5;
 
 	private static String username;
-	private static String fromUserId;
 	private static String dealId;
 
 	private EditText txtMessage;
@@ -89,9 +90,7 @@ public class ParseChatActivity extends Activity {
 		txtMessage = (EditText) findViewById(R.id.etMensaje);
 		btnSend = (Button) findViewById(R.id.btnSend);
 		chatListView = (ListView) findViewById(R.id.chatList);
-		adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1);
-		chatListView.setAdapter(adapter);
+		
 		btnSend.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -152,25 +151,37 @@ public class ParseChatActivity extends Activity {
 		query.findInBackground(new FindCallback<ParseObject>() {
 			public void done(List<ParseObject> messages, ParseException e) {
 				if (e == null) {
-					adapter.clear();
 					
 					StringBuilder builder = new StringBuilder();
+					List<Chat> objects = new ArrayList<Chat>();
 					
 					for (int i = messages.size() - 1; i >= 0; i--) {
-						if (messages.get(i).getString(USER_NAME_KEY).equals(username)) {
-							// 名前: メッセージのstringを作成 (自分の時は時下げしない)
-							builder.append(messages.get(i).getString(USER_NAME_KEY)
-									+ ": " + messages.get(i).getString("message") + "\n");
-						}
-						else {
-							// 名前: メッセージのstringを作成 (相手のときは時下げ)
-							String indent = "    ";
-							builder.append(indent + messages.get(i).getString(USER_NAME_KEY)
-									+ ": " + messages.get(i).getString("message") + "\n");
-						}
+//						if (messages.get(i).getString(USER_NAME_KEY).equals(username)) {
+//							// 名前: メッセージのstringを作成 (自分の時は時下げしない)
+//							builder.append(messages.get(i).getString(USER_NAME_KEY)
+//									+ ": " + messages.get(i).getString("message") + "\n");
+//						}
+//						else {
+//							// 名前: メッセージのstringを作成 (相手のときは時下げ)
+//							String indent = "    ";
+//							builder.append(indent + messages.get(i).getString(USER_NAME_KEY)
+//									+ ": " + messages.get(i).getString("message") + "\n");
+//						}
+						// adapter.add(messages.get(i).getString("message"));
+						Chat item = new Chat();
+						item.setUserName(messages.get(i).getString("userName"));
+						item.setMessage(messages.get(i).getString("message"));
 						
+						objects.add(item);
 					}
-					addItemstoListView(builder.toString());
+
+		            // アダプターをセット
+		            ChatAdapter chatAdapater = new ChatAdapter(ParseChatActivity.this, 0, objects);
+		            
+		            chatListView.setAdapter(chatAdapater);
+		            chatAdapater.notifyDataSetChanged(); // Listviewの更新 (http://d.hatena.ne.jp/tomorrowkey/20100612/1276341096)
+			        chatListView.invalidate();
+			        
 				} else {
 					Log.d("message", "Error: " + e.getMessage());
 				}
