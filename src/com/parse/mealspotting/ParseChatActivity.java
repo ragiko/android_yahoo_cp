@@ -155,7 +155,7 @@ public class ParseChatActivity extends Activity {
 					StringBuilder builder = new StringBuilder();
 					List<Chat> objects = new ArrayList<Chat>();
 					
-					for (int i = messages.size() - 1; i >= 0; i--) {
+					for (int i = 0; i <= messages.size() - 1; i++) {
 //						if (messages.get(i).getString(USER_NAME_KEY).equals(username)) {
 //							// 名前: メッセージのstringを作成 (自分の時は時下げしない)
 //							builder.append(messages.get(i).getString(USER_NAME_KEY)
