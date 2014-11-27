@@ -47,7 +47,8 @@ public class MealListActivity extends ListActivity {
 						// only top-rated meals.
 						ParseQuery query = new ParseQuery("Textbook");
 						query.whereContainedIn("department", Arrays.asList("工学部"));
-						// query.orderByDescending("rating");
+						query.whereNotEqualTo("user", ParseUser.getCurrentUser());
+						query.orderByAscending("createdAt");
 						return query;
 					}
 				});
@@ -113,11 +114,10 @@ public class MealListActivity extends ListActivity {
 			textAdapter = new BookAdapter(this,
 					new ParseQueryAdapter.QueryFactory<Book>() {
 						public ParseQuery<Book> create() {
-							// Here we can configure a ParseQuery to display
-							// only top-rated meals.
 							ParseQuery query = new ParseQuery("Textbook");
 							query.whereContainedIn("department", Arrays.asList(departmentStr));
-							// query.orderByDescending("rating");
+							query.whereNotEqualTo("user", ParseUser.getCurrentUser());
+							query.orderByAscending("createdAt");
 							return query;
 						}
 					});
