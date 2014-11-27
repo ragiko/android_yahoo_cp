@@ -175,7 +175,7 @@
 
 	    </LinearLayout>
 
-	    <LinearLayout style="@style/PostItemLayout" >
+	    <LinearLayout style="@style/PostBottomItemLayout" >
 
 	        <TextView
 	            android:layout_width="100dp"
@@ -200,7 +200,7 @@
 	    <Button
 	        android:id="@+id/button_submit_post"
 	        style="@style/Button"
-	        android:layout_width="120dp"
+	        android:layout_width="match_parent"
 	        android:text="投稿する" />
 
 	</LinearLayout>
