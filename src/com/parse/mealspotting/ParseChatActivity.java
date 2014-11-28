@@ -161,25 +161,25 @@ public class ParseChatActivity extends Activity {
 
 					StringBuilder builder = new StringBuilder();
 
-					for (int i = messages.size() - 1; i >= 0; i--) {
-						if (messages.get(i).getString(USER_NAME_KEY).equals(username)) {
-							// 名前: メッセージのstringを作成 (自分の時は時下げしない)
-							builder.append(messages.get(i).getString(USER_NAME_KEY)
-									+ ": " + messages.get(i).getString("message") + "\n");
-						}
-						else {
-							// 名前: メッセージのstringを作成 (相手のときは時下げ)
-							String indent = "    ";
-							builder.append(indent + messages.get(i).getString(USER_NAME_KEY)
-									+ ": " + messages.get(i).getString("message") + "\n");
-						}
+					for (int i = 0; i <= messages.size() - 1; i++) {
+//          if (messages.get(i).getString(USER_NAME_KEY).equals(username)) {
+//            // 名前: メッセージのstringを作成 (自分の時は時下げしない)
+//            builder.append(messages.get(i).getString(USER_NAME_KEY)
+//                + ": " + messages.get(i).getString("message") + "\n");
+//          }
+//          else {
+//            // 名前: メッセージのstringを作成 (相手のときは時下げ)
+//            String indent = "    ";
+//            builder.append(indent + messages.get(i).getString(USER_NAME_KEY)
+//                + ": " + messages.get(i).getString("message") + "\n");
+//          }
+          // adapter.add(messages.get(i).getString("message"));
+          Chat item = new Chat();
+          item.setUserName(messages.get(i).getString("userName"));
+          item.setMessage(messages.get(i).getString("message"));
 
-					}
-					addItemstoListView(builder.toString());
-				} else {
-					Log.d("message", "Error: " + e.getMessage());
-				}
-			}
+          objects.add(item);
+        }
 		});
 	}
 
