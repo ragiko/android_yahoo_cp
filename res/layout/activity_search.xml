@@ -10,6 +10,7 @@
         style="@style/Textbox"
         android:layout_width="match_parent"
         android:hint="書籍名や著者名などキーワードを入力"
+        android:paddingLeft="10dip"
         android:inputType="textMultiLine"
         android:layout_marginBottom="20dp" />
 
