@@ -35,7 +35,8 @@
     <ListView
         android:id="@+id/chatList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:dividerHeight="2sp" >
     </ListView>
 
 </LinearLayout>

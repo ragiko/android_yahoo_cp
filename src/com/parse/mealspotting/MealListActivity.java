@@ -29,6 +29,7 @@ public class MealListActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getListView().setClickable(false);
+		getListView().setDividerHeight(4);
 
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if (currentUser != null) {

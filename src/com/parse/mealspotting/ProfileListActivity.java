@@ -31,6 +31,7 @@ public class ProfileListActivity extends ListActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		getListView().setClickable(false);
+		getListView().setDividerHeight(4);
 
 		textAdapter = new BookAdapter(this,
 				new ParseQueryAdapter.QueryFactory<Book>() {

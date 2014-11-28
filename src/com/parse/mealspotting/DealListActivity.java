@@ -33,6 +33,7 @@ public class DealListActivity extends ListActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		getListView().setClickable(false);
+		getListView().setDividerHeight(4);
 
 		// TODO: 要リファクタリング
 	    final String bookId = getIntent().getStringExtra("user_book");
