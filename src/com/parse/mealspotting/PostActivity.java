@@ -119,7 +119,7 @@ public class PostActivity extends Activity {
                       title[i] = jsonObjectItem.getString("title");
                       author[i] = jsonObjectItem.getString("author");
                       publisher[i] = jsonObjectItem.getString("publisherName");
-                      imageUrl[i] = jsonObjectItem.getString("mediumImageUrl");
+                      imageUrl[i] = jsonObjectItem.getString("largeImageUrl");
                     }
 
                     // ****もっと賢い書き方があるか
@@ -133,7 +133,7 @@ public class PostActivity extends Activity {
                     newIntent.putExtra("title", titleArray);
                     newIntent.putExtra("author", authorArray);
                     newIntent.putExtra("publisher", publisherArray);
-                    newIntent.putExtra("imagel", imageUrlArray);
+                    newIntent.putExtra("image", imageUrlArray);
                     startActivityForResult(newIntent, REQUEST_BOOKLIST);
                   } else {
                     // 一件もヒットしなかった場合はメッセージを表示

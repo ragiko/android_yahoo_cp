@@ -60,6 +60,12 @@
                android:layout_height="wrap_content"
                android:paddingLeft="40dp"  />
 
+           <com.parse.ParseImageView
+               android:id="@+id/book_userpicture"
+               android:layout_width="200dp"
+                android:layout_height="200dp"
+               android:paddingLeft="40dp"  />
+
         </LinearLayout>
 
          <TextView

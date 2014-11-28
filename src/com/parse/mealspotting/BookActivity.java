@@ -76,7 +76,7 @@ public class BookActivity extends Activity  implements OnClickListener {
 			ImageLoader imageLoader = new ImageLoader(BookActivity.this);
 			ImageView imgflag = (ImageView) findViewById(R.id.book_thumb);
 	        imageLoader.DisplayImage(book.getString("text_thumb_url"), imgflag);
-
+/*
 			ParseImageView bookImage = (ParseImageView) findViewById(R.id.book_picture);
 			ParseFile photoFile = book.getParseFile("text_thumb");
 			if (photoFile != null) {
@@ -88,6 +88,18 @@ public class BookActivity extends Activity  implements OnClickListener {
 					}
 				});
 			}
+*/
+			ParseImageView userPicture = (ParseImageView) findViewById(R.id.book_userpicture);
+      ParseFile userPictureFile = book.getParseFile("picture");
+      if (userPictureFile != null) {
+        userPicture.setParseFile(userPictureFile);
+        userPicture.loadInBackground(new GetDataCallback() {
+          @Override
+          public void done(byte[] data, ParseException e) {
+            // nothing to do
+          }
+        });
+      }
 
 			TextView priceTextView = (TextView) findViewById(R.id.book_price);
 			priceTextView.setText(book.getString("price"));
