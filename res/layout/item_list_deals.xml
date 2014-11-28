@@ -76,7 +76,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/chat_price"
+        android:id="@+id/deal_price"
         style="@style/itemListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
