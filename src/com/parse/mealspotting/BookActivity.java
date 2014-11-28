@@ -68,10 +68,10 @@ public class BookActivity extends Activity  implements OnClickListener {
 			titleTextView.setText(book.getString("title"));
 
 			TextView authorTextView = (TextView) findViewById(R.id.book_author);
-			authorTextView.setText(book.getString("author"));
+			authorTextView.setText("著者：" + book.getString("author"));
 
 			TextView publisherTextView = (TextView) findViewById(R.id.book_publisher);
-			publisherTextView.setText(book.getString("publisher"));
+			publisherTextView.setText("出版社：" + book.getString("publisher"));
 
 			ImageLoader imageLoader = new ImageLoader(BookActivity.this);
 			ImageView imgflag = (ImageView) findViewById(R.id.book_thumb);

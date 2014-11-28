@@ -53,7 +53,7 @@
         </activity>
         <activity
             android:name=".BookActivity"
-            android:label="text" >
+            android:label="詳細情報" >
         </activity>
         <activity
             android:name=".PostActivity"
@@ -65,7 +65,7 @@
         </activity>
         <activity
             android:name=".ParseChatActivity"
-            android:label="chat" >
+            android:label="取引相手に連絡" >
         </activity>
         <activity
             android:name=".DealListActivity"
@@ -73,7 +73,7 @@
         </activity>
         <activity
             android:name=".ProfileListActivity"
-            android:label="プロフィール" >
+            android:label="出品した教科書" >
         </activity>
         <activity
             android:name=".ChooseUserActivity"
