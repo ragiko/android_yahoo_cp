@@ -27,19 +27,19 @@ public class MealSpottingApplication extends Application {
 		Parse.initialize(this, "b5KZBDCrwsDrRyYhGitOz9sXNOhzIqbBchdUBWWc", "RPiFbq86gt2PmGwYqtGIiwct2behPH1IAPzcBiOa");
 
 		
-		ParseUser.logInInBackground("tag", "hy6ju7ki",
-				new LogInCallback() {
-					@Override
-					public void done(ParseUser user, com.parse.ParseException e) {
-						// TODO Auto-generated method stub
-						if (user != null) {
-							// Hooray! The user is logged in.
-						} else {
-							// Signup failed. Look at the ParseException to see
-							// what happened.
-						}
-					}
-			});
+//		ParseUser.logInInBackground("tag", "hy6ju7ki",
+//				new LogInCallback() {
+//					@Override
+//					public void done(ParseUser user, com.parse.ParseException e) {
+//						// TODO Auto-generated method stub
+//						if (user != null) {
+//							// Hooray! The user is logged in.
+//						} else {
+//							// Signup failed. Look at the ParseException to see
+//							// what happened.
+//						}
+//					}
+//			});
 		
 
 //	    ParseACL defaultACL = new ParseACL();

@@ -101,6 +101,7 @@ public class ChooseUserActivity extends Activity {
 	private void openParseChatActivity(String name) {
 		Intent i = new Intent(this, MealListActivity.class);
 		startActivity(i);
+		finish();
 	}
 
 	@SuppressLint("ShowToast")

@@ -30,7 +30,7 @@ public class DealAdapter extends ParseQueryAdapter<Deal>  {
 		super.getItemView(deal, v, parent);
 
 		final TextView titleTextView = (TextView) v.findViewById(R.id.deal_book);
-		final TextView priceTextView = (TextView) v.findViewById(R.id.chat_price);
+		final TextView priceTextView = (TextView) v.findViewById(R.id.deal_price);
 		final TextView statusTextView = (TextView) v.findViewById(R.id.deal_status);
 		final TextView otherUserIdTextView = (TextView) v.findViewById(R.id.deal_other_user);
 		
@@ -46,8 +46,8 @@ public class DealAdapter extends ParseQueryAdapter<Deal>  {
 				// TODO Auto-generated method stub
 				if (e == null) {
 					// object will be your game score
-					String s = book.getString("title");
 					titleTextView.setText(book.getString("title"));
+					priceTextView.setText(String.valueOf(book.getInt("price")));
 				} else {
 					// something went wrong
 					Log.d("texterror", e.getMessage());
