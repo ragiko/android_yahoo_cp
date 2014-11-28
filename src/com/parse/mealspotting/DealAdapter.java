@@ -30,9 +30,7 @@ public class DealAdapter extends ParseQueryAdapter<Deal>  {
 		super.getItemView(deal, v, parent);
 
 		final TextView titleTextView = (TextView) v.findViewById(R.id.deal_book);
-		final TextView fromTextView = (TextView) v.findViewById(R.id.deal_from_user);
-		final TextView toTextView = (TextView) v.findViewById(R.id.deal_to_user);
-		final TextView idTextView = (TextView) v.findViewById(R.id.deal_id);
+		final TextView priceTextView = (TextView) v.findViewById(R.id.chat_price);
 		final TextView statusTextView = (TextView) v.findViewById(R.id.deal_status);
 		final TextView otherUserIdTextView = (TextView) v.findViewById(R.id.deal_other_user);
 		
@@ -108,11 +106,11 @@ public class DealAdapter extends ParseQueryAdapter<Deal>  {
 		Log.d("from", fromUserId);
 		
 		if (ParseUser.getCurrentUser().getObjectId().equals(fromUserId)) { // 売る側
-			statusAndUserId.put("status", "sell");
+			statusAndUserId.put("status", "出品");
 			statusAndUserId.put("user_id", toUserId);
 		} 
 		else { // 買う側
-			statusAndUserId.put("status", "buy");
+			statusAndUserId.put("status", "購入");
 			statusAndUserId.put("user_id", fromUserId);
 		}
 		

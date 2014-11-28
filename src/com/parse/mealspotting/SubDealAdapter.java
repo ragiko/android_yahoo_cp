@@ -27,8 +27,8 @@ public class SubDealAdapter extends ParseQueryAdapter<Message>  {
 		super.getItemView(deal, v, parent);
 
 		final TextView titleTextView = (TextView) v.findViewById(R.id.deal_book);
-		final TextView fromTextView = (TextView) v.findViewById(R.id.deal_from_user);
-		final TextView toTextView = (TextView) v.findViewById(R.id.deal_to_user);
+//		final TextView fromTextView = (TextView) v.findViewById(R.id.deal_from_user);
+//		final TextView toTextView = (TextView) v.findViewById(R.id.deal_to_user);
 		
 		// TODO: もっとスマートなfetchを考える
 		
@@ -63,7 +63,7 @@ public class SubDealAdapter extends ParseQueryAdapter<Message>  {
 				if (e == null) {
 					// object will be your game score
 					String s = user.getUsername();
-					fromTextView.setText(user.getUsername());
+//					fromTextView.setText(user.getUsername());
 				} else {
 					// something went wrong
 					Log.d("error", e.getMessage());
@@ -83,7 +83,7 @@ public class SubDealAdapter extends ParseQueryAdapter<Message>  {
 				if (e == null) {
 					// object will be your game score
 					String s = user.getUsername();
-					toTextView.setText(user.getUsername());
+//					toTextView.setText(user.getUsername());
 				} else {
 					// something went wrong
 					Log.d("error", e.getMessage());
