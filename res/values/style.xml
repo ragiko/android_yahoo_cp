@@ -48,4 +48,9 @@
         <item name="android:textSize">20sp</item>
         <item name="android:layout_marginBottom">10dp</item>
     </style>
+    <style name="Textbox">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:background">@drawable/edittext</item>
+    </style>
 </resources>

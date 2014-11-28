@@ -85,12 +85,12 @@ public class Book extends ParseObject {
 		put("university", university);
 	}
 
-	public String getDepertment() {
+	public String getDepartment() {
 		return getString("department");
 	}
 
-	public void setDepertment(String depertment) {
-		put("department", depertment);
+	public void setDepartment(String department) {
+		put("department", department);
 	}
 
 	public Integer getYear() {
@@ -108,7 +108,7 @@ public class Book extends ParseObject {
 	public void setUser(ParseUser user) {
 		put("user", user);
 	}
-	
+
 	public String getBookThumbUrl() {
 		return getString("text_thumb_url");
 	}

@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
@@ -27,22 +26,23 @@ public class SubDealListActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getListView().setClickable(false);
+		getListView().setDividerHeight(4);
 
 		dealAdapter = new SubDealAdapter(this,
 				new ParseQueryAdapter.QueryFactory<Message>() {
 					public ParseQuery<Message> create() {
-						
+
 						// 参考: http://murayama.hatenablog.com/entry/2013/11/30/093741
 						List<ParseQuery<Message>> queries = new ArrayList<ParseQuery<Message>>();
-						
+
 						queries.add((new ParseQuery("Contact")).whereEqualTo("toUser", ParseUser.getCurrentUser()));
 						queries.add((new ParseQuery("Contact")).whereEqualTo("fromUser", ParseUser.getCurrentUser()));
-						
+
 						ParseQuery<Message> query = ParseQuery.or(queries);
-						
+
 						// 後々fetchのときにつかえるかも
 						// query.include("Textbook");
-						
+
 						return query;
 					}
 				});

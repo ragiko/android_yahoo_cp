@@ -28,11 +28,16 @@ public class DealListActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		getListView().setClickable(false);
-		
+		getListView().setDividerHeight(4);
+
 		// TODO: 要リファクタリング
 	    final String bookId = getIntent().getStringExtra("user_book");
-	
+
 	    if (bookId != null) {
 	    	// profile activityからインテント
 	    	// 教科書についてのコメントの一覧を表示
@@ -42,12 +47,12 @@ public class DealListActivity extends ListActivity {
 				@Override
 				public void done(final ParseObject book, com.parse.ParseException e) {
 					if (e == null) {
-						
+
 						dealAdapter = new DealAdapter(DealListActivity.this,
 								new ParseQueryAdapter.QueryFactory<Deal>() {
 									public ParseQuery<Deal> create() {
 										ParseQuery query = new ParseQuery("Contact");
-										
+
 										query.whereEqualTo("textBook", book);
 										query.whereEqualTo("toUser", ParseUser.getCurrentUser());
 
@@ -59,10 +64,10 @@ public class DealListActivity extends ListActivity {
 										return query;
 									}
 								});
-						
-						mDealAdapter = dealAdapter; 
+
+						mDealAdapter = dealAdapter;
 						setListAdapter(mDealAdapter);
-						
+
 					} else {
 						Log.d("texterror", e.getMessage());
 					}
@@ -95,27 +100,18 @@ public class DealListActivity extends ListActivity {
 							return query;
 						}
 					});
-			
+
 			mDealAdapter = dealAdapter; // アダプターをクリックリスナーで使用
 			setListAdapter(mDealAdapter);
 	    }
 
-		
+
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// getMenuInflater().inflate(R.menu.activity_meal_list, menu);
 		return true;
-	}
-
-	/*
-	 * Posting meals and refreshing the list will be controlled from the Action
-	 * Bar.
-	 */
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
@@ -134,5 +130,15 @@ public class DealListActivity extends ListActivity {
 		intent.putExtra("deal_id", deal.getId());
 		intent.putExtra("user", ParseUser.getCurrentUser().getUsername());
 		this.startActivity(intent);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	  // アプリアイコンをタップで戻る
+	  if (item.getItemId() == android.R.id.home) {
+          finish();
+          return true;
+	  }
+	  return super.onOptionsItemSelected(item);
 	}
 }

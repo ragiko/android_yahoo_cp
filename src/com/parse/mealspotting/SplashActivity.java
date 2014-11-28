@@ -16,7 +16,7 @@ public class SplashActivity extends Activity {
     setContentView(R.layout.splash);
     Handler hdl = new Handler();
     // 500ms遅延させてsplashHandlerを実行します。
-    hdl.postDelayed(new splashHandler(), 500);
+    hdl.postDelayed(new splashHandler(), 1000);
   }
   class splashHandler implements Runnable {
     public void run() {
