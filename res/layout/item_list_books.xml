@@ -33,9 +33,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_alignParentTop="true"
         android:layout_marginTop="25dp"
         android:layout_toRightOf="@id/text_list_url_thumb" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,10 +59,17 @@
             android:paddingRight="3dip"
             android:text="text_author" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
             android:paddingLeft="3dip"
             android:paddingRight="3dip"
             android:text="出版社：" />
@@ -68,6 +81,9 @@
             android:paddingLeft="3dip"
             android:paddingRight="3dip"
             android:text="text_publisher" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <TextView
