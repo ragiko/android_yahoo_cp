@@ -2,7 +2,6 @@ package com.parse.mealspotting;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.Calendar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,6 +20,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -52,9 +52,6 @@ public class PostActivity extends Activity {
   private EditText searchEditText, detailEditText, priceEditText, titleEditText, authorEditText, publisherEditText;
   private Dialog progressDialog;
 
-  //日時・時刻を取得するためのインスタンス
-  private Calendar obj_cd = Calendar.getInstance();
-
   private Bitmap img = null;
   private ParseUser user;
   private int selectedItemId;   // 書籍検索画面でどのアイテムが選択されたか
@@ -72,6 +69,12 @@ public class PostActivity extends Activity {
 
 		setContentView(R.layout.activity_post);
 		findViews();
+
+		// 学部のリストをSpinnerに登録
+    ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter
+        .createFromResource(this, DepertmentOfUniversity.list.get("岐阜大学"),
+            android.R.layout.simple_spinner_dropdown_item);
+    changeDepSpinner.setAdapter(spinnerAdapter);
 
 		// ボタンにクリックリスナーを登録
 		searchButton.setOnClickListener(new View.OnClickListener() {
@@ -231,12 +234,14 @@ public class PostActivity extends Activity {
       }
 
       // 入力必須項目は気にせずset
+      String university = univTextView.getText().toString();
+      String department = changeDepSpinner.getSelectedItem().toString();
       int price = Integer.parseInt(priceEditText.getText().toString());
       String title = titleEditText.getText().toString();
       String author = authorEditText.getText().toString();
       String publisher = publisherEditText.getText().toString();
-      book.setUniversity("岐阜大学");   // 要修正
-      book.setDepertment("工学部");  // 要修正
+      book.setUniversity(university);
+      book.setDepartment(department);
       book.setTitle(title);
       book.setAuthor(author);
       book.setPublisher(publisher);
@@ -255,7 +260,7 @@ public class PostActivity extends Activity {
 
     @Override
     protected void onPreExecute() {
-      PostActivity.this.progressDialog = ProgressDialog.show(PostActivity.this, "", "投稿中...", true);
+      PostActivity.this.progressDialog = ProgressDialog.show(PostActivity.this, "", "出品情報を登録中...", true);
       super.onPreExecute();
     }
 

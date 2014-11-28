@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.parse.ParseQueryAdapter;
 
 public class BookAdapter extends ParseQueryAdapter<Book>  {
-	
+
 	ImageLoader imageLoader;
 
 	public BookAdapter(Context context, QueryFactory<Book> query) {
@@ -37,26 +37,26 @@ public class BookAdapter extends ParseQueryAdapter<Book>  {
 //				}
 //			});
 //		}
-		
+
 		// Locate the ImageView in singleitemview.xml
         ImageView imgflag = (ImageView) v.findViewById(R.id.text_list_url_thumb);
         imageLoader.DisplayImage(book.getBookThumbUrl(), imgflag);
 
 		TextView titleTextView = (TextView) v.findViewById(R.id.text_list_title);
 		titleTextView.setText(book.getTitle());
-		
+
 		TextView authorTextView = (TextView) v.findViewById(R.id.text_list_author);
 		authorTextView.setText(book.getAuthor());
-		
+
 		TextView pablisherTextView = (TextView) v.findViewById(R.id.text_list_publisher);
 		pablisherTextView.setText(book.getPublisher());
-		
+
 		TextView departmentTextView = (TextView) v.findViewById(R.id.text_list_department);
-		departmentTextView.setText(book.getDepertment());
-		
+		departmentTextView.setText(book.getDepartment());
+
 		TextView priceTextView = (TextView) v.findViewById(R.id.text_list_price);
 		priceTextView.setText(String.valueOf(book.getPrice()));
-		
+
 		return v;
 	}
 
