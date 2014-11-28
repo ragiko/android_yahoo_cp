@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,6 +70,9 @@ public class PostActivity extends Activity {
 
 		setContentView(R.layout.activity_post);
 		findViews();
+
+		// 価格は数字のみ入力を受付
+		priceEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
 
 		// 学部のリストをSpinnerに登録
     ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter
