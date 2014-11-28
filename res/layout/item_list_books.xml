@@ -14,7 +14,8 @@
         android:layout_height="100dp"
         android:layout_width="100dp"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/text1" />
+        android:contentDescription="thumb"
+        android:src="@drawable/temp_img" />
 
     <TextView
         android:id="@+id/text_list_title"
