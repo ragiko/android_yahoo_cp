@@ -1,42 +1,35 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ParseChatActivity" >
 
-    <TextView
-        android:id="@+id/tvTitulo"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/app_name" />
+        android:orientation="horizontal"
+        tools:context=".ParseChatActivity" >
 
-    <Button
-        android:id="@+id/btnSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="送信" />
+        <EditText
+            android:id="@+id/etMensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="input messsage" />
 
-    <EditText
-        android:id="@+id/etMensaje"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:ems="10"
-        android:hint="input messsage" />
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="送信" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/chatList"
-        android:background="#CCCCCC"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvTitulo"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
+        android:layout_height="wrap_content" >
     </ListView>
 
-</RelativeLayout>
+</LinearLayout>
